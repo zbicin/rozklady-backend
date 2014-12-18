@@ -1,5 +1,7 @@
-﻿using System;
+﻿using RozkladyBackend.Models.Context;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +14,8 @@ namespace RozkladyBackend
     {
         protected void Application_Start()
         {
+            Database.SetInitializer<BackendContext>(new BackendInitializer());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

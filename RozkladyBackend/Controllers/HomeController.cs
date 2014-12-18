@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RozkladyBackend.Models.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ namespace RozkladyBackend.Controllers
     {
         public ActionResult Index()
         {
+            var t = new BackendContext().Departures.First();
             return View();
         }
 

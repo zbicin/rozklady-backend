@@ -21,7 +21,7 @@ namespace RozkladyBackend.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("BackendContext", throwIfV1Schema: false)
         {
         }
 
