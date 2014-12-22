@@ -1,1 +1,31 @@
-﻿adfad
+﻿<a href="#stops/add" class="btn btn-default btn-sm">Dodaj</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nazwa
+            </th>
+            <th>
+                Opis
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="stop in stops">
+            <td>{{ stop.name }}</td>
+            <td>{{ stop.description }}</td>
+            <td class="text-right">
+                <a ng-href="#stops/edit/{{ stop.id }}"
+                   class="btn btn-xs btn-default">
+                    Edytuj
+                </a>
+                <a ng-href="#stops/delete/{{ stop.id }}"
+                   class="btn btn-xs btn-default">
+                    Usuń
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -159,13 +159,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\App.Ajax.Controller.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Lib\JsonCamelCaseResult.cs" />
     <Compile Include="Models\Context\BackendContext.cs" />
     <Compile Include="Models\Context\BackendInitializer.cs" />
     <Compile Include="Models\Departure.cs" />
@@ -199,6 +200,7 @@
     <Content Include="Scripts\AngularApp\Controllers\MainController.js" />
     <Content Include="Scripts\AngularApp\Controllers\StopsController.js" />
     <Content Include="Scripts\AngularApp\Factories\Page.js" />
+    <Content Include="Scripts\AngularApp\Factories\Storage.js" />
     <Content Include="Scripts\AngularApp\TimetableApp.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

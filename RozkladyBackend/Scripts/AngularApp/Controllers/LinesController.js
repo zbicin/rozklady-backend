@@ -1,3 +1,2 @@
 ﻿'use strict';
-timetableApp.controller('linesController', function ($scope) {
-});
+timetableApp.controller('linesController', function ($scope) {});
