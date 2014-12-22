@@ -3,17 +3,14 @@ var timetableApp = angular.module('TimetableApp', ['ngRoute']);
 
 timetableApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-
         .when('/', {
-            templateUrl: '/ViewsAngular/Home.html',
-            controller: 'homeController'
+            templateUrl: '/ViewsAngular/Home/Index.html',
+            controller: 'homeIndexController'
         })
-
         .when('/home', {
-            templateUrl: '/ViewsAngular/Home.html',
-            controller: 'homeController'
+            templateUrl: '/ViewsAngular/Home/Index.html',
+            controller: 'homeIndexController'
         })
-
         .when('/generate', {
             templateUrl: '/ViewsAngular/Generate.html',
             controller: 'generateController'
@@ -22,10 +19,20 @@ timetableApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/ViewsAngular/Announcements.html',
             controller: 'announcementsController'
         })
+        // --------------------------------
         .when('/stops', {
-            templateUrl: '/ViewsAngular/Stops.html',
-            controller: 'stopsController'
+            templateUrl: '/ViewsAngular/Stops/Index.html',
+            controller: 'stopsIndexController'
         })
+        .when('/stops/createOrEdit', {
+            templateUrl: '/ViewsAngular/Stops/CreateOrEdit.html',
+            controller: 'stopsCreateOrEditController'
+        })
+        .when('/stops/createOrEdit/:stopId', {
+            templateUrl: '/ViewsAngular/Stops/CreateOrEdit.html',
+            controller: 'stopsCreateOrEditController'
+        })
+        // --------------------------------
         .when('/lines', {
             templateUrl: '/ViewsAngular/Lines.html',
             controller: 'linesController'

@@ -20,6 +20,7 @@ section aside {
 .content {
     padding: 20px;
     margin: 0 320px 0 120px;
+    overflow-x: hidden;
 }
 
 .page-title {

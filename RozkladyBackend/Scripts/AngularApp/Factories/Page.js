@@ -2,7 +2,7 @@
 timetableApp.factory('Page', function () {
     var back = {
         title: 'Powrót',
-        url: '#home',
+        url: '',
         action: null
     };
 

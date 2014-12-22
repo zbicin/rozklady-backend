@@ -1,0 +1,28 @@
+﻿<div class="alert alert-danger" role="alert" ng-show="errorMessage !== null">
+    <strong>Wystąpił błąd.</strong>
+    {{ errorMessage }}
+</div>
+<form role="form" novalidate name="createOrEditStopForm" ng-submit="submitForm()">
+    <input type="hidden" ng-model="id" />
+    <input type="hidden" ng-model="latitude" />
+    <input type="hidden" ng-model="longitude" />
+    <div class="row">
+        <div class="col-sm-6 col-xs-12">
+            <div class="form-group" ng-class="{'has-error': createOrEditStopForm.name.$invalid && createOrEditStopForm.name.$dirty}">
+                <label for="name">Nazwa</label>
+                <input type="text" required class="form-control" name="name" id="name" placeholder="np. Łodzka/Główna" ng-model="stop.name">
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="description">Opis</label>
+                <input type="text" class="form-control" id="description" placeholder="" ng-model="stop.description">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="submit" class="btn btn-primary" ng-disabled="createOrEditStopForm.$invalid">Dodaj</button>
+        </div>
+    </div>
+</form>

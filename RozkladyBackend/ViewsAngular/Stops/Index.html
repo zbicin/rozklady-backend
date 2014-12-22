@@ -1,4 +1,4 @@
-﻿<a href="#stops/add" class="btn btn-default btn-sm">Dodaj</a>
+﻿<a href="#stops/createOrEdit" class="btn btn-default btn-sm">Dodaj</a>
 
 <table class="table">
     <thead>
@@ -17,11 +17,11 @@
             <td>{{ stop.name }}</td>
             <td>{{ stop.description }}</td>
             <td class="text-right">
-                <a ng-href="#stops/edit/{{ stop.id }}"
+                <a ng-href="#stops/createOrEdit/{{ stop.id }}"
                    class="btn btn-xs btn-default">
                     Edytuj
                 </a>
-                <a ng-href="#stops/delete/{{ stop.id }}"
+                <a ng-click="removeStop(stop)"
                    class="btn btn-xs btn-default">
                     Usuń
                 </a>
