@@ -24,8 +24,17 @@ namespace RozkladyBackend
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootswatch.yeti.min.css",
+                      "~/Content/app.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angularapp").Include(
+                "~/Scripts/angular.js",
+                "~/Scripts/angular-*",
+                "~/Scripts/AngularApp/*.js",
+                "~/Scripts/AngularApp/Factories/*.js",
+                "~/Scripts/AngularApp/Directives/*.js",
+                "~/Scripts/AngularApp/Services/*.js",
+                "~/Scripts/AngularApp/Controllers/*.js"));
         }
     }
 }

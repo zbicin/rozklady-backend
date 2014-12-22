@@ -14,6 +14,12 @@ namespace RozkladyBackend
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "AngularApp",
+                url: "App/{*.}",
+                defaults: new { controller = "App", action = "Index" }
+                );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

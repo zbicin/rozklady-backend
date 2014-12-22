@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+<aside class="sidebar">
+    Sidebar
+    <a href="#home" class="btn btn-default">Ekran główny</a>
+</aside>
+<section>
+    <aside class="pull-left">
+        <a ng-show="Page.isBackVisible()"
+           ng-click="Page.back.action()"
+           ng-href="{{ Page.back.url }}"
+           class="btn btn btn-default">
+            {{ Page.back.title }}
+        </a>
+    </aside>
+    <aside class="pull-right">
+        <a ng-show="Page.isNextVisible()"
+           ng-click="Page.next.action()"
+           ng-href="{{ Page.next.url }}"
+           class="btn btn btn-primary">
+            {{ Page.next.title }}
+        </a>
+    </aside>
+    <div class="content">
+        <h1 class="page-title">{{ Page.title }}</h1>
+        <div ng-view></div>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+﻿aside.sidebar {
+    float: right;
+    width: 200px;
+    min-height: 100vh;
+    background: #222;
+    border-left: 1px solid #111;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+section aside {
+    width: 120px;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+    border: 1px dotted #aaa;
+}
+
+.content {
+    padding: 20px;
+    margin: 0 120px;
+}
+
+.page-title {
+    margin-top: 0;
+}
