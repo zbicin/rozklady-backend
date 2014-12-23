@@ -12,7 +12,7 @@ timetableApp.controller('stopsCreateOrEditController', ['$scope','$routeParams',
 
     // --------------------------------
     function submitForm() {
-        Storage.addOrEditStop($scope.stop)
+        Storage.stops.addOrEdit($scope.stop)
             .then(
                 function () {
                     location.hash = '#stops';
@@ -35,7 +35,7 @@ timetableApp.controller('stopsCreateOrEditController', ['$scope','$routeParams',
             }; 
         }
         else {
-            Storage.getStop($routeParams.stopId).then(function(stop) {
+            Storage.stops.get($routeParams.stopId).then(function(stop) {
                 $scope.stop = stop;
             });
         }

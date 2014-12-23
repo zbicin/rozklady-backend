@@ -197,7 +197,7 @@
     <Content Include="Scripts\Lib\angular.js" />
     <Content Include="Scripts\Lib\angular.min.js" />
     <Content Include="Scripts\AngularApp\Controllers\Home\IndexController.js" />
-    <Content Include="Scripts\AngularApp\Controllers\LinesController.js" />
+    <Content Include="Scripts\AngularApp\Controllers\Lines\IndexController.js" />
     <Content Include="Scripts\AngularApp\Controllers\MainController.js" />
     <Content Include="Scripts\AngularApp\Controllers\Stops\IndexController.js" />
     <Content Include="Scripts\AngularApp\Factories\Page.js" />

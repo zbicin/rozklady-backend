@@ -11,7 +11,7 @@ timetableApp.controller('stopsIndexController', ['$scope', 'Page', 'Storage', fu
     // --------------------------------
     function removeStop(stop) {
         if (confirm('Czy jesteś pewien, że chcesz usunąć przystanek ' + stop.name + '?')) {
-            Storage.removeStop(stop.id).then(function () {
+            Storage.stops.remove(stop.id).then(function () {
                 fetchStops();
             });
         }
@@ -19,7 +19,7 @@ timetableApp.controller('stopsIndexController', ['$scope', 'Page', 'Storage', fu
 
     // --------------------------------
     function fetchStops() {
-        Storage.listStops().then(function (stops) {
+        Storage.stops.list().then(function (stops) {
             $scope.stops = stops;
         });
     }

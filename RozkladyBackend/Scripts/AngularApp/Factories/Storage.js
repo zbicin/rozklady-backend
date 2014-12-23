@@ -1,52 +1,45 @@
 ﻿'use strict';
 timetableApp.factory('Storage', ['$http', '$q', function ($http, $q) {
-    return {
-        addOrEditStop: addOrEditStop,
-        getStop: getStop,
-        listStops: listStops,
-        removeStop: removeStop
+
+    var lines = {};
+    var stops = {
+        addOrEdit: function (stop) {
+            var request = $http({
+                method: 'post',
+                url: '/Ajax/AddOrEditStop',
+                data: stop
+            });
+
+            return (request.then(handleSuccess, handleError));
+        },
+        get: function (stopId) {
+            var request = $http({
+                method: 'get',
+                url: '/Ajax/GetStop?stopId=' + stopId,
+            });
+
+            return (request.then(handleSuccess, handleError));
+        },
+        list: function () {
+            var request = $http({
+                method: 'get',
+                url: '/Ajax/ListStops'
+            });
+
+            return (request.then(handleSuccess, handleError));
+        },
+        remove: function (stopId) {
+            var request = $http({
+                method: 'post',
+                url: '/Ajax/RemoveStop',
+                data: {
+                    stopId: stopId
+                }
+            });
+
+            return (request.then(handleSuccess, handleError));
+        }
     };
-
-    // --------------------------------
-    function addOrEditStop(stop) {
-        var request = $http({
-            method: 'post',
-            url: '/Ajax/AddOrEditStop',
-            data: stop
-        });
-
-        return (request.then(handleSuccess, handleError));
-    }
-
-    function getStop(stopId) {
-        var request = $http({
-            method: 'get',
-            url: '/Ajax/GetStop?stopId='+stopId,
-        });
-
-        return (request.then(handleSuccess, handleError));
-    }
-
-    function listStops() {
-        var request = $http({
-            method: 'get',
-            url: '/Ajax/ListStops'
-        });
-
-        return (request.then(handleSuccess, handleError));
-    }
-
-    function removeStop(stopId) {
-        var request = $http({
-            method: 'post',
-            url: '/Ajax/RemoveStop',
-            data: {
-                stopId: stopId
-            }
-        });
-
-        return (request.then(handleSuccess, handleError));
-    }
 
     // --------------------------------
     function handleError(response) {
@@ -65,5 +58,11 @@ timetableApp.factory('Storage', ['$http', '$q', function ($http, $q) {
     function handleSuccess(response) {
         return (response.data);
     }
+
+    // --------------------------------
+    return {
+        stops: stops,
+        lines: lines
+    };
 
 }]);

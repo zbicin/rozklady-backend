@@ -11,14 +11,7 @@ timetableApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/ViewsAngular/Home/Index.html',
             controller: 'homeIndexController'
         })
-        .when('/generate', {
-            templateUrl: '/ViewsAngular/Generate.html',
-            controller: 'generateController'
-        })
-        .when('/announcements', {
-            templateUrl: '/ViewsAngular/Announcements.html',
-            controller: 'announcementsController'
-        })
+
         // --------------------------------
         .when('/stops', {
             templateUrl: '/ViewsAngular/Stops/Index.html',
@@ -32,28 +25,51 @@ timetableApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/ViewsAngular/Stops/CreateOrEdit.html',
             controller: 'stopsCreateOrEditController'
         })
+
         // --------------------------------
         .when('/lines', {
             templateUrl: '/ViewsAngular/Lines/Index.html',
             controller: 'linesIndexController'
         })
-        .when('/lines/createOrEdit/group', {
-            templateUrl: '/ViewsAngular/Lines/CreateOrEditGroup.html',
-            controller: 'linesCreateOrEditGroupController'
+        .when('/lines/createOrEdit', {
+            templateUrl: '/ViewsAngular/Lines/CreateOrEdit.html',
+            controller: 'linesCreateOrEditController'
         })
-        .when('/lines/createOrEdit/group/:groupId', {
-            templateUrl: '/ViewsAngular/Lines/CreateOrEditGroup.html',
-            controller: 'linesCreateOrEditGroupController'
+        .when('/lines/createOrEdit/:lineId', {
+            templateUrl: '/ViewsAngular/Lines/CreateOrEdit.html',
+            controller: 'linesCreateOrEditController'
         })
-        .when('/lines/createOrEdit/basicInfo/', {
-            templateUrl: '/ViewsAngular/Lines/CreateOrEditBasicInfo.html',
-            controller: 'linesCreateOrEditBasicInfoController'
+
+        // --------------------------------
+        .when('/variants/createOrEdit', {
+            templateUrl: '/ViewsAngular/Variants/CreateOrEdit.html',
+            controller: 'variantsCreateOrEditController'
         })
-        .when('/lines/createOrEdit/basicInfo/:lineId', {
-            templateUrl: '/ViewsAngular/Lines/CreateOrEditBasicInfo.html',
-            controller: 'linesCreateOrEditBasicInfoController'
+        .when('/variants/createOrEdit/:variantId', {
+            templateUrl: '/ViewsAngular/Variants/CreateOrEdit.html',
+            controller: 'variantsCreateOrEditController'
+        })
+
+        // --------------------------------
+        .when('/departures/createOrEdit/:variantId', {
+            templateUrl: '/ViewsAngular/Departures/CreateOrEdit.html',
+            controller: 'departuresCreateOrEditController'
+        })
+
+        // --------------------------------
+        .when('/variantStops/createOrEdit/:variantId', {
+            templateUrl: '/ViewsAngular/VariantStops/CreateOrEdit.html',
+            controller: 'variantStopsCreateOrEditController'
         })
         // --------------------------------
+        .when('/generate', {
+            templateUrl: '/ViewsAngular/Generate.html',
+            controller: 'generateController'
+        })
+        .when('/announcements', {
+            templateUrl: '/ViewsAngular/Announcements.html',
+            controller: 'announcementsController'
+        })
         .when('/help', {
             templateUrl: '/ViewsAngular/Help.html',
             controller: 'helpController'
