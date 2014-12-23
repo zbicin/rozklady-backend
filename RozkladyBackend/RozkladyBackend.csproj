@@ -170,10 +170,10 @@
     <Compile Include="Models\Context\BackendContext.cs" />
     <Compile Include="Models\Context\BackendInitializer.cs" />
     <Compile Include="Models\Departure.cs" />
-    <Compile Include="Models\Line.cs" />
-    <Compile Include="Models\LineStop.cs" />
+    <Compile Include="Models\Variant.cs" />
+    <Compile Include="Models\VariantStop.cs" />
     <Compile Include="Models\Scaffolded\AccountViewModels.cs" />
-    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Line.cs" />
     <Compile Include="Models\Scaffolded\IdentityModels.cs" />
     <Compile Include="Models\Scaffolded\ManageViewModels.cs" />
     <Compile Include="Models\Stop.cs" />

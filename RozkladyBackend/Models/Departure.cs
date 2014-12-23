@@ -11,7 +11,7 @@ namespace RozkladyBackend.Models
         public int Hour { get; set; }
         public int Minute { get; set; }
         public String Symbol { get; set; }
-        public virtual Line Line { get; set; }
+        public virtual Variant Variant { get; set; }
         public Boolean IsValidOnMonday { get; set; }
         public Boolean IsValidOnTueday { get; set; }
         public Boolean IsValidOnWednesday { get; set; }

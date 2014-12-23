@@ -10,7 +10,7 @@ namespace RozkladyBackend.Models.Context
     {
         protected override void Seed(BackendContext context)
         {
-            var group = new Group()
+            var line = new Line()
             {
                 Name = "TEST"
             };
@@ -31,24 +31,24 @@ namespace RozkladyBackend.Models.Context
                 Longitude = 19.575073
             };
 
-            var line = new Line()
+            var variant = new Variant()
             {
-                Group = group,
+                Line = line,
                 Symbol = "A",
                 FirstLineStop = stop1,
                 LastLineStop = stop2
             };
 
-            var lineStop1 = new LineStop()
+            var variantStop1 = new VariantStop()
             {
-                Line = line,
+                Variant = variant,
                 Stop = stop1,
                 TimeOffset = 0
             };
 
-            var lineStop2 = new LineStop()
+            var variantStop2 = new VariantStop()
             {
-                Line = line,
+                Variant = variant,
                 Stop = stop2,
                 TimeOffset = 30
             };
@@ -86,8 +86,8 @@ namespace RozkladyBackend.Models.Context
             context.Departures.Add(departure1);
             context.Departures.Add(departure2);
 
-            context.LineStops.Add(lineStop1);
-            context.LineStops.Add(lineStop2);
+            context.VariantStops.Add(variantStop1);
+            context.VariantStops.Add(variantStop2);
 
             context.SaveChanges();
         }

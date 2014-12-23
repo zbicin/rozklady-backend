@@ -16,10 +16,10 @@ namespace RozkladyBackend.Models.Context
 
         public BackendContext() : base("BackendContext") { }
 
-        public DbSet<Line> Lines { get; set; }
+        public DbSet<Variant> Variants { get; set; }
         public DbSet<Departure> Departures { get; set; }
-        public DbSet<LineStop> LineStops { get; set; }
-        public DbSet<Group> Groups { get; set; }
+        public DbSet<VariantStop> VariantStops { get; set; }
+        public DbSet<Line> Lines { get; set; }
         public DbSet<Stop> Stops { get; set; }
     }
 }

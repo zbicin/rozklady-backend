@@ -34,9 +34,26 @@ timetableApp.config(['$routeProvider', function ($routeProvider) {
         })
         // --------------------------------
         .when('/lines', {
-            templateUrl: '/ViewsAngular/Lines.html',
-            controller: 'linesController'
+            templateUrl: '/ViewsAngular/Lines/Index.html',
+            controller: 'linesIndexController'
         })
+        .when('/lines/createOrEdit/group', {
+            templateUrl: '/ViewsAngular/Lines/CreateOrEditGroup.html',
+            controller: 'linesCreateOrEditGroupController'
+        })
+        .when('/lines/createOrEdit/group/:groupId', {
+            templateUrl: '/ViewsAngular/Lines/CreateOrEditGroup.html',
+            controller: 'linesCreateOrEditGroupController'
+        })
+        .when('/lines/createOrEdit/basicInfo/', {
+            templateUrl: '/ViewsAngular/Lines/CreateOrEditBasicInfo.html',
+            controller: 'linesCreateOrEditBasicInfoController'
+        })
+        .when('/lines/createOrEdit/basicInfo/:lineId', {
+            templateUrl: '/ViewsAngular/Lines/CreateOrEditBasicInfo.html',
+            controller: 'linesCreateOrEditBasicInfoController'
+        })
+        // --------------------------------
         .when('/help', {
             templateUrl: '/ViewsAngular/Help.html',
             controller: 'helpController'
