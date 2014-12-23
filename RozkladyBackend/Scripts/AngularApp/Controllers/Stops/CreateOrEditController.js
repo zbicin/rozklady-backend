@@ -1,5 +1,5 @@
 ﻿'use strict';
-timetableApp.controller('stopsCreateOrEditController', ['$scope','$routeParams', 'Page', 'Storage', function ($scope, $routeParams, Page, Storage) {
+timetableApp.controller('stopsCreateOrEditController', ['$scope','$routeParams', 'Page', 'Store', function ($scope, $routeParams, Page, Store) {
     Page.title = isNewAction() ? 'Dodaj przystanek' : 'Edytuj przystanek';
     Page.back.url = '#stops';
 
@@ -12,7 +12,7 @@ timetableApp.controller('stopsCreateOrEditController', ['$scope','$routeParams',
 
     // --------------------------------
     function submitForm() {
-        Storage.stops.addOrEdit($scope.stop)
+        Store.stops.addOrEdit($scope.stop)
             .then(
                 function () {
                     location.hash = '#stops';
@@ -35,7 +35,7 @@ timetableApp.controller('stopsCreateOrEditController', ['$scope','$routeParams',
             }; 
         }
         else {
-            Storage.stops.get($routeParams.stopId).then(function(stop) {
+            Store.stops.get($routeParams.stopId).then(function(stop) {
                 $scope.stop = stop;
             });
         }

@@ -11,10 +11,11 @@ namespace RozkladyBackend.Lib
 {
     public class JsonCamelCaseResult : ActionResult
     {
-        public JsonCamelCaseResult(object data, JsonRequestBehavior jsonRequestBehavior)
+        public JsonCamelCaseResult(object data, JsonRequestBehavior jsonRequestBehavior, PreserveReferencesHandling preserveReferenceHandling = PreserveReferencesHandling.All)
         {
             Data = data;
             JsonRequestBehavior = jsonRequestBehavior;
+            ReferencesHandling = preserveReferenceHandling;
         }
 
         public Encoding ContentEncoding { get; set; }
@@ -24,6 +25,8 @@ namespace RozkladyBackend.Lib
         public object Data { get; set; }
 
         public JsonRequestBehavior JsonRequestBehavior { get; set; }
+
+        public PreserveReferencesHandling ReferencesHandling { get; set; }
 
         public override void ExecuteResult(ControllerContext context)
         {
@@ -48,7 +51,8 @@ namespace RozkladyBackend.Lib
 
             var jsonSerializerSettings = new JsonSerializerSettings
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                PreserveReferencesHandling = ReferencesHandling
             };
             response.Write(JsonConvert.SerializeObject(Data, jsonSerializerSettings));
         }

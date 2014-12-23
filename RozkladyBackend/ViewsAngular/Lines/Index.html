@@ -1,0 +1,42 @@
+﻿<button type="button" ng-click="goToAddLine()" class="btn btn-default btn-sm">Dodaj</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nazwa
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="line in lines">
+        <tr class="info">
+            <td><strong>{{ line.name }}</strong></td>
+            <td class="text-right">
+                <a ng-href="#lines/createOrEdit/{{ line.id }}"
+                   class="btn btn-xs btn-default">
+                    Edytuj
+                </a>
+                <a ng-click="removeLine(line)"
+                   class="btn btn-xs btn-default">
+                    Usuń
+                </a>
+            </td>
+        </tr>
+        <tr ng-repeat="variant in line.variants">
+            <td>
+                    {{ line.name }}{{ variant.symbol }}
+            </td>
+            <td class="text-right">
+                <a ng-href="#variants/createOrEdit/{{ variant.id }}"
+                   class="btn btn-xs btn-default">
+                    Edytuj
+                </a>
+                <a ng-click="removeVariant(line, variant)"
+                   class="btn btn-xs btn-default">
+                    Usuń
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

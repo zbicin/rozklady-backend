@@ -51,12 +51,20 @@ timetableApp.config(['$routeProvider', function ($routeProvider) {
         })
 
         // --------------------------------
+        .when('/departures/createOrEdit', {
+            templateUrl: '/ViewsAngular/Departures/CreateOrEdit.html',
+            controller: 'departuresCreateOrEditController'
+        })
         .when('/departures/createOrEdit/:variantId', {
             templateUrl: '/ViewsAngular/Departures/CreateOrEdit.html',
             controller: 'departuresCreateOrEditController'
         })
 
         // --------------------------------
+        .when('/variantStops/createOrEdit', {
+            templateUrl: '/ViewsAngular/VariantStops/CreateOrEdit.html',
+            controller: 'variantStopsCreateOrEditController'
+        })
         .when('/variantStops/createOrEdit/:variantId', {
             templateUrl: '/ViewsAngular/VariantStops/CreateOrEdit.html',
             controller: 'variantStopsCreateOrEditController'

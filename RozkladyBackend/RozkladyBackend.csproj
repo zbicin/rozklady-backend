@@ -188,6 +188,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\app.css" />
+    <Content Include="Scripts\AngularApp\Controllers\Departures\CreateOrEditController.js" />
+    <Content Include="Scripts\AngularApp\Controllers\Lines\CreateOrEditController.js" />
     <Content Include="Scripts\AngularApp\Controllers\Stops\CreateOrEditController.js" />
     <Content Include="Scripts\Lib\angular-animate.js" />
     <Content Include="Scripts\Lib\angular-animate.min.js" />
@@ -201,7 +203,7 @@
     <Content Include="Scripts\AngularApp\Controllers\MainController.js" />
     <Content Include="Scripts\AngularApp\Controllers\Stops\IndexController.js" />
     <Content Include="Scripts\AngularApp\Factories\Page.js" />
-    <Content Include="Scripts\AngularApp\Factories\Storage.js" />
+    <Content Include="Scripts\AngularApp\Factories\Store.js" />
     <Content Include="Scripts\AngularApp\TimetableApp.js" />
     <Content Include="Scripts\Lib\bootstrap.js" />
     <Content Include="Scripts\Lib\bootstrap.min.js" />
@@ -222,7 +224,10 @@
     <Content Include="Scripts\Lib\respond.js" />
     <Content Include="Scripts\Lib\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="ViewsAngular\Departures\CreateOrEdit.html" />
     <Content Include="ViewsAngular\Home\Index.html" />
+    <Content Include="ViewsAngular\Lines\CreateOrEdit.html" />
+    <Content Include="ViewsAngular\Lines\Index.html" />
     <Content Include="ViewsAngular\Stops\CreateOrEdit.html" />
     <Content Include="ViewsAngular\Stops\Index.html" />
     <Content Include="Web.config" />
@@ -265,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\AngularApp\Controllers\VariantStops\" />
     <Folder Include="Scripts\AngularApp\Directives\" />
     <Folder Include="Scripts\AngularApp\Services\" />
     <Folder Include="ViewsAngular\Partials\" />
