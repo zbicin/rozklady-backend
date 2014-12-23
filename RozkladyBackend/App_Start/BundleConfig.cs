@@ -30,6 +30,7 @@ namespace RozkladyBackend
             bundles.Add(new ScriptBundle("~/bundles/angularapp").Include(
                 "~/Scripts/Lib/angular.js",
                 "~/Scripts/Lib/angular-*")
+                .IncludeDirectory("~/Scripts/Lib/angular-ui", "*.js", true)
                 .IncludeDirectory("~/Scripts/AngularApp", "*.js", true));
         }
     }

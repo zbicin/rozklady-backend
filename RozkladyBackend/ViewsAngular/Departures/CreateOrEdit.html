@@ -22,41 +22,27 @@
     <div class="row">
         <div class="col-sm-6 col-xs-12">
             <div class="btn-group">
-                <input type="button"
-                       class="btn btn-default"
-                       ng-class="{active: form.isValidOnMonday, 'btn-warning': form.isValidOnMonday}"
-                       ng-click="form.isValidOnMonday=!form.isValidOnMonday"
-                       value="Pn" />
-                <input type="button"
-                       class="btn btn-default"
-                       ng-class="{active: form.isValidOnTuesday, 'btn-warning': form.isValidOnTuesday}"
-                       ng-click="form.isValidOnTuesday=!form.isValidOnTuesday"
-                       value="Wt" />
-                <input type="button"
-                       class="btn btn-default"
-                       ng-class="{active: form.isValidOnWednesday, 'btn-warning': form.isValidOnWednesday}"
-                       ng-click="form.isValidOnWednesday=!form.isValidOnWednesday"
-                       value="Śr" />
-                <input type="button"
-                       class="btn btn-default"
-                       ng-class="{active: form.isValidOnThursday, 'btn-warning': form.isValidOnThursday}"
-                       ng-click="form.isValidOnThursday=!form.isValidOnThursday"
-                       value="Cz" />
-                <input type="button"
-                       class="btn btn-default"
-                       ng-class="{active: form.isValidOnFriday, 'btn-warning': form.isValidOnFriday}"
-                       ng-click="form.isValidOnFriday=!form.isValidOnFriday"
-                       value="Pt" />
-                <input type="button"
-                       class="btn btn-default"
-                       ng-class="{active: form.isValidOnSaturday, 'btn-warning': form.isValidOnSaturday}"
-                       ng-click="form.isValidOnSaturday=!form.isValidOnSaturday"
-                       value="Sb" />
-                <input type="button"
-                       class="btn btn-default"
-                       ng-class="{active: form.isValidOnSunday, 'btn-warning': form.isValidOnSunday}"
-                       ng-click="form.isValidOnSunday=!form.isValidOnSunday"
-                       value="Nd" />
+                <label class="btn btn-default"
+                       btn-checkbox
+                       ng-model="form.isValidOnMonday">Pn</label>
+                <label class="btn btn-default"
+                       btn-checkbox
+                       ng-model="form.isValidOnTuesday">Wt</label>
+                <label class="btn btn-default"
+                       btn-checkbox
+                       ng-model="form.isValidOnWednesday">Śr</label>
+                <label class="btn btn-default"
+                       btn-checkbox
+                       ng-model="form.isValidOnThursday">Cz</label>
+                <label class="btn btn-default"
+                       btn-checkbox
+                       ng-model="form.isValidOnFriday">Pt</label>
+                <label class="btn btn-default"
+                       btn-checkbox
+                       ng-model="form.isValidOnSaturday">Sb</label>
+                <label class="btn btn-default"
+                       btn-checkbox
+                       ng-model="form.isValidOnSunday">Nd</label>
             </div>
         </div>
     </div>
