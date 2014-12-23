@@ -190,6 +190,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\app.css" />
+    <Content Include="Scripts\AngularApp\Controllers\VariantStops\CreateOrEditController.js" />
     <Content Include="Scripts\Lib\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\Lib\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\Lib\angular-ui\ui-bootstrap.js" />
@@ -237,6 +238,7 @@
     <Content Include="ViewsAngular\Lines\Index.html" />
     <Content Include="ViewsAngular\Stops\CreateOrEdit.html" />
     <Content Include="ViewsAngular\Stops\Index.html" />
+    <Content Include="ViewsAngular\VariantStops\CreateOrEdit.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -277,7 +279,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\AngularApp\Controllers\VariantStops\" />
     <Folder Include="Scripts\AngularApp\Directives\" />
     <Folder Include="Scripts\AngularApp\Services\" />
     <Folder Include="ViewsAngular\Partials\" />

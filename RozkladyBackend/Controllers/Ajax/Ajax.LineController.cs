@@ -34,7 +34,8 @@ namespace RozkladyBackend.Controllers
         {
             using (BackendContext db = new BackendContext())
             {
-                return new JsonCamelCaseResult(db.Lines.Single(s => s.Id == lineId), JsonRequestBehavior.AllowGet);
+                db.Configuration.LazyLoadingEnabled = false;
+                return new JsonCamelCaseResult(db.Lines.Single(s => s.Id == lineId), JsonRequestBehavior.AllowGet, PreserveReferencesHandling.None);
             }
         }
 

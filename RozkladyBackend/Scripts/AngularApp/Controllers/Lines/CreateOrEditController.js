@@ -3,6 +3,7 @@ timetableApp.controller('linesCreateOrEditController', ['$scope','$routeParams',
     Page.title = isNewAction() ? 'Dodaj linię' : 'Edytuj linię';
     Page.back.url = '#lines';
 
+    $scope.isNewAction = isNewAction();
     $scope.errorMessage = null;
     $scope.line = null;
 

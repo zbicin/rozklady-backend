@@ -15,11 +15,11 @@
             <td class="text-right">
                 <a ng-href="#variants/addToLine/{{ line.id }}"
                    class="btn btn-xs btn-default disabled">
-                    Dodaj wariant linii
+                    Dodaj wariant
                 </a>
                 <a ng-href="#lines/createOrEdit/{{ line.id }}"
-                   class="btn btn-xs btn-default disabled">
-                    Edytuj
+                   class="btn btn-xs btn-default">
+                    Edytuj podstawowe informacje
                 </a>
                 <a ng-click="removeLine(line)"
                    class="btn btn-xs btn-default">
@@ -32,10 +32,34 @@
                     {{ line.name }}{{ variant.symbol }}
             </td>
             <td class="text-right">
-                <a ng-href="#variants/createOrEdit/{{ variant.id }}"
-                   class="btn btn-xs btn-default disabled">
-                    Edytuj
-                </a>
+                <div class="btn-group">
+                    <button type="button"
+                            class="btn btn-xs btn-default dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-expanded="false">
+                        Edytuj... <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li>
+                            <a ng-href="#variants/createOrEdit/{{ variant.id }}"
+                               class="disabled">
+                                Podstawowe informacje
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-href="#departures/createOrEdit/{{ variant.id }}"
+                               class="disabled">
+                                Godziny odjzadów
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-href="#variantStops/createOrEdit/{{ variant.id }}"
+                               class="disabled">
+                                Przystanki na trasie
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <a ng-click="removeVariant(line, variant)"
                    class="btn btn-xs btn-default">
                     Usuń
