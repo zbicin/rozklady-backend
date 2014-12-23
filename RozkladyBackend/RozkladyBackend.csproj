@@ -159,7 +159,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\Ajax\Ajax.DeparturesController.cs" />
+    <Compile Include="Controllers\Ajax\Ajax.VariantsController.cs" />
+    <Compile Include="Controllers\Ajax\Ajax.StopsController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -212,6 +214,7 @@
     <Content Include="Scripts\Lib\angular.min.js.map" />
     <Content Include="Scripts\Lib\angular-route.min.js.map" />
     <Content Include="Scripts\Lib\angular-animate.min.js.map" />
+    <Compile Include="Controllers\Ajax\Ajax.LineController.cs" />
     <None Include="Scripts\Lib\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Lib\jquery-1.10.2.js" />
     <Content Include="Scripts\Lib\jquery-1.10.2.min.js" />

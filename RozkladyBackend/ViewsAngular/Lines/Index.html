@@ -13,8 +13,12 @@
         <tr class="info">
             <td><strong>{{ line.name }}</strong></td>
             <td class="text-right">
+                <a ng-href="#variants/addToLine/{{ line.id }}"
+                   class="btn btn-xs btn-default disabled">
+                    Dodaj wariant linii
+                </a>
                 <a ng-href="#lines/createOrEdit/{{ line.id }}"
-                   class="btn btn-xs btn-default">
+                   class="btn btn-xs btn-default disabled">
                     Edytuj
                 </a>
                 <a ng-click="removeLine(line)"
@@ -29,7 +33,7 @@
             </td>
             <td class="text-right">
                 <a ng-href="#variants/createOrEdit/{{ variant.id }}"
-                   class="btn btn-xs btn-default">
+                   class="btn btn-xs btn-default disabled">
                     Edytuj
                 </a>
                 <a ng-click="removeVariant(line, variant)"
