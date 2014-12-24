@@ -25,6 +25,7 @@ namespace RozkladyBackend
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootswatch.yeti.min.css",
+                      "~/Content/animate.min.css",
                       "~/Content/app.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularapp").Include(

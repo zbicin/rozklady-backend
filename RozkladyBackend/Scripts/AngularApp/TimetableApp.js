@@ -1,5 +1,5 @@
 ﻿'use strict';
-var timetableApp = angular.module('TimetableApp', ['ngRoute', 'ui.bootstrap', 'ui.utils']);
+var timetableApp = angular.module('TimetableApp', ['ngRoute', 'ui.bootstrap', 'ui.utils', 'ngAnimate']);
 
 timetableApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
