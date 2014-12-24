@@ -31,6 +31,9 @@ timetableApp.factory('Store', ['$http', '$q', function ($http, $q) {
             });
 
             return (request.then(handleSuccess, handleError));
+        },
+        update: function (variantId, departures, departuresToRemove) {
+            return basicRequest('post', 'UpdateDepartures', {variantId: variantId, variantDepartures: departures, departuresToRemove: departuresToRemove });
         }
     };
 

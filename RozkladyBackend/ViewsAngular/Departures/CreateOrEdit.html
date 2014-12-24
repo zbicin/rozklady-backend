@@ -1,0 +1,39 @@
+﻿<div class="alert alert-danger" role="alert" ng-show="errorMessage !== null">
+<strong>Wystąpił błąd.</strong>
+{{ errorMessage }}
+</div>
+
+<form role="form" novalidate ng-submit="submitForm()" name="rawDepartureForm">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group"
+                 ng-class="{'has-error': rawDepartureForm.rawDeparture.$invalid && rawDepartureForm.rawDeparture.$dirty}">
+                <label for="rawDeparture">Godzina odjazdu</label>
+                <div class="input-group">
+                    <input type="text"
+                           value=""
+                           class="form-control"
+                           name="rawDeparture"
+                           placeholder="np. 4:53"
+                           ng-model="rawDeparture"
+                           required
+                           ng-pattern="/^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/" />
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-info" ng-disabled="rawDepartureForm.rawDeparture.$invalid">
+                            Dodaj godzinę odjazdu (Enter)
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <ul>
+                <li ng-repeat="departure in departures">
+                    {{ departure.hour }}:{{ departure.minute }}
+                    <button type="button" ng-click="removeDeparture($index)">x</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</form>
+<button type="button" class="btn btn-success" ng-click="proceed()">Zapisz ten bałagan</button>
