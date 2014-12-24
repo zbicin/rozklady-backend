@@ -8,6 +8,7 @@ timetableApp.controller('departuresCreateOrEditController', ['$scope','$routePar
     $scope.isValidOnWorkdays = true;
     $scope.isValidOnSaturday = true;
     $scope.isValidOnSunday = true;
+    $scope.isValidOnWorkdaysFilter = isValidOnWorkdaysFilter;
     $scope.rawDeparture = '';
 
     $scope.proceed = proceed;
@@ -19,6 +20,14 @@ timetableApp.controller('departuresCreateOrEditController', ['$scope','$routePar
     // --------------------------------
     var removalQueue = [];
     var addQueue = [];
+
+    function isValidOnWorkdaysFilter(item) {
+        return item.isValidOnMonday ||
+            item.isValidOnTuesday ||
+            item.isValidOnThursday ||
+            item.isValidOnWednesday ||
+            item.isValidOnFriday;
+    }
 
     function proceed() {
         Store.departures.update($scope.variant.id, $scope.departures, removalQueue)

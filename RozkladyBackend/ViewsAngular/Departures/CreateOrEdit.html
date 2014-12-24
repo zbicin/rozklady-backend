@@ -1,6 +1,6 @@
 ﻿<div class="alert alert-danger" role="alert" ng-show="errorMessage !== null">
-<strong>Wystąpił błąd.</strong>
-{{ errorMessage }}
+    <strong>Wystąpił błąd.</strong>
+    {{ errorMessage }}
 </div>
 
 <form role="form" novalidate ng-submit="submitForm()" name="rawDepartureForm">
@@ -55,11 +55,11 @@
                     <tr ng-repeat="hour in hoursArray">
                         <td>{{ hour }}</td>
                         <td>
-                            <span ng-repeat="singleDeparture in departures | filter:{hour:hour, isValidOnWorkdays:true}:true | orderBy:'minute'"
+                            <span ng-repeat="singleDeparture in departures | filter:{hour:hour}:true | filter:isValidOnWorkdaysFilter | orderBy:'minute'"
                                   class="label"
                                   ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
                                 <span>
-                                    {{ singleDeparture.minute }}
+                                    {{ singleDeparture.minute < 10 ? "0" + singleDeparture.minute : singleDeparture.minute }}
                                 </span>
                                 <span ng-click="removeDeparture(singleDeparture)">
                                     &nbsp;x&nbsp;
@@ -72,7 +72,7 @@
                                   class="label"
                                   ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
                                 <span>
-                                    {{ singleDeparture.minute }}
+                                    {{ singleDeparture.minute < 10 ? "0" + singleDeparture.minute : singleDeparture.minute }}
                                 </span>
                                 <span ng-click="removeDeparture(singleDeparture)">
                                     &nbsp;x&nbsp;
@@ -85,7 +85,7 @@
                                   class="label"
                                   ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
                                 <span>
-                                    {{ singleDeparture.minute }}
+                                    {{ singleDeparture.minute < 10 ? "0" + singleDeparture.minute : singleDeparture.minute }}
                                 </span>
                                 <span ng-click="removeDeparture(singleDeparture)">
                                     &nbsp;x&nbsp;
