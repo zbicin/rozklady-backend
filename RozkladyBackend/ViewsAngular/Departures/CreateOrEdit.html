@@ -27,10 +27,21 @@
             </div>
             <div class="form-group">
                 <label>Obowiązuje w dni</label>
-                <div class="btn-group" style="display: block;">
-                    <label class="btn btn-default" ng-model="isValidOnWorkdays" btn-checkbox>Od poniedziałku do piątku</label>
-                    <label class="btn btn-default" ng-model="isValidOnSaturday" btn-checkbox>Soboty</label>
-                    <label class="btn btn-default" ng-model="isValidOnSunday" btn-checkbox>Niedziele</label>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="isValidOnWorkdays"> Od poniedziałku do piątku
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="isValidOnSaturday"> Soboty
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="isValidOnSunday"> Niedziele
+                    </label>
                 </div>
             </div>
         </div>
