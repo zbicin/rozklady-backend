@@ -20,19 +20,81 @@
                            ng-pattern="/^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/" />
                     <span class="input-group-btn">
                         <button type="submit" class="btn btn-info" ng-disabled="rawDepartureForm.rawDeparture.$invalid">
-                            Dodaj godzinę odjazdu (Enter)
+                            Dodaj
                         </button>
                     </span>
                 </div>
             </div>
+            <div class="form-group">
+                <label>Obowiązuje w dni</label>
+                <div class="btn-group" style="display: block;">
+                    <label class="btn btn-default" ng-model="isValidOnWorkdays" btn-checkbox>Od poniedziałku do piątku</label>
+                    <label class="btn btn-default" ng-model="isValidOnSaturday" btn-checkbox>Soboty</label>
+                    <label class="btn btn-default" ng-model="isValidOnSunday" btn-checkbox>Niedziele</label>
+                </div>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <ul>
-                <li ng-repeat="departure in departures">
-                    {{ departure.hour }}:{{ departure.minute }}
-                    <button type="button" ng-click="removeDeparture($index)">x</button>
-                </li>
-            </ul>
+            <table class="table table-bordered table-timetable">
+                <thead>
+                    <tr>
+                        <th colspan="2">Od poniedziałku do piątku</th>
+                        <th colspan="2">Soboty</th>
+                        <th colspan="2">Niedziele</th>
+                    </tr>
+                    <tr>
+                        <th>Godz.</th>
+                        <th>Minuty</th>
+                        <th>Godz.</th>
+                        <th>Minuty</th>
+                        <th>Godz.</th>
+                        <th>Minuty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="hour in hoursArray">
+                        <td>{{ hour }}</td>
+                        <td>
+                            <span ng-repeat="singleDeparture in departures | filter:{hour:hour, isValidOnWorkdays:true}:true | orderBy:'minute'"
+                                  class="label"
+                                  ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
+                                <span>
+                                    {{ singleDeparture.minute }}
+                                </span>
+                                <span ng-click="removeDeparture(singleDeparture)">
+                                    &nbsp;x&nbsp;
+                                </span>
+                            </span>
+                        </td>
+                        <td>{{ hour }}</td>
+                        <td>
+                            <span ng-repeat="singleDeparture in departures | filter:{hour:hour, isValidOnSaturday:true}:true | orderBy:'minute'"
+                                  class="label"
+                                  ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
+                                <span>
+                                    {{ singleDeparture.minute }}
+                                </span>
+                                <span ng-click="removeDeparture(singleDeparture)">
+                                    &nbsp;x&nbsp;
+                                </span>
+                            </span>
+                        </td>
+                        <td>{{ hour }}</td>
+                        <td>
+                            <span ng-repeat="singleDeparture in departures | filter:{hour:hour, isValidOnSunday:true}:true | orderBy:'minute'"
+                                  class="label"
+                                  ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
+                                <span>
+                                    {{ singleDeparture.minute }}
+                                </span>
+                                <span ng-click="removeDeparture(singleDeparture)">
+                                    &nbsp;x&nbsp;
+                                </span>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </form>

@@ -4,6 +4,10 @@ timetableApp.controller('departuresCreateOrEditController', ['$scope','$routePar
     Page.back.url = '#lines';
 
     $scope.errorMessage = null;
+    $scope.hoursArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+    $scope.isValidOnWorkdays = true;
+    $scope.isValidOnSaturday = true;
+    $scope.isValidOnSunday = true;
     $scope.rawDeparture = '';
 
     $scope.proceed = proceed;
@@ -28,7 +32,8 @@ timetableApp.controller('departuresCreateOrEditController', ['$scope','$routePar
         );
     }
 
-    function removeDeparture(index) {
+    function removeDeparture(departureToRemove) {
+        var index = $scope.departures.indexOf(departureToRemove);
         var removedElementArray = $scope.departures.splice(index, 1);
         removalQueue.push(removedElementArray[0]);
     }
@@ -40,8 +45,15 @@ timetableApp.controller('departuresCreateOrEditController', ['$scope','$routePar
         var symbol = splittedRawInput[1].substr(2);
         var newDeparture = {
             id: 0,
-            hour: hour,
-            minute: minute,
+            hour: parseInt(hour,10),
+            isValidOnMonday: $scope.isValidOnWorkdays,
+            isValidOnTuesday: $scope.isValidOnWorkdays,
+            isValidOnWednesday: $scope.isValidOnWorkdays,
+            isValidOnThursday: $scope.isValidOnWorkdays,
+            isValidOnFriday: $scope.isValidOnWorkdays,
+            isValidOnSaturday: $scope.isValidOnSaturday,
+            isValidOnSunday: $scope.isValidOnSunday,
+            minute: parseInt(minute, 10),
             symbol: symbol
         };
 

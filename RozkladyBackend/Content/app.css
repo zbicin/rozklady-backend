@@ -26,3 +26,16 @@ section aside {
 .page-title {
     margin-top: 0;
 }
+
+table.table-timetable thead tr:first-child th {
+    text-align: center;
+}
+table.table-timetable thead tr:last-child th:nth-child(even),
+table.table-timetable tbody tr td:nth-child(even) {
+    text-align: left;
+}
+table.table-timetable thead tr:last-child th:nth-child(odd),
+table.table-timetable tbody tr td:nth-child(odd) {
+    text-align: right;
+    width: 40px;
+}
