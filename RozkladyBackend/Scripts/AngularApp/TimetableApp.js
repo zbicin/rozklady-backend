@@ -49,6 +49,10 @@ timetableApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/ViewsAngular/Variants/CreateOrEdit.html',
             controller: 'variantsCreateOrEditController'
         })
+        .when('/variants/addToLine/:lineId', {
+            templateUrl: '/ViewsAngular/Variants/CreateOrEdit.html',
+            controller: 'variantsCreateOrEditController'
+        })
 
         // --------------------------------
         .when('/departures/createOrEdit', {

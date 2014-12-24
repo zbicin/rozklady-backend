@@ -20,6 +20,7 @@ section aside {
     padding: 20px;
     margin: 0 320px 0 120px;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 .page-title {

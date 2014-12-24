@@ -30,5 +30,7 @@ namespace RozkladyBackend.Controllers
                 return new JsonCamelCaseResult(db.Variants.Include("Departures").Single(v => v.Id == variantId), JsonRequestBehavior.AllowGet);
             }
         }
+
+
     }
 }

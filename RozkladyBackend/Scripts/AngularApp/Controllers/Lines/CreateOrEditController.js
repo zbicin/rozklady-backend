@@ -5,54 +5,55 @@ timetableApp.controller('linesCreateOrEditController', ['$scope','$routeParams',
 
     $scope.isNewAction = isNewAction();
     $scope.errorMessage = null;
-    $scope.line = null;
 
+    $scope.addVariant = addVariant;
+    $scope.removeVariant = removeVariant;
     $scope.submitForm = submitForm;
 
-    fetchInitialLine();
+    fetchInitialData();
 
     // --------------------------------
-    function submitForm() {
-        if (isNewAction()) {
-            Store.temp.line = $scope.line;
-            Store.temp.line.variants.push({
-                id: 0,
-                symbol: '',
-                departures: [],
-                variantStops: []
-            });
+    var removalQueue = [];
 
-            location.hash = '#departures/createOrEdit';
-        }
-        else {
-            Store.lines.addOrEdit($scope.line)
-                .then(
-                    function () {
-                        location.hash = '#lines';
-                    },
-                        function (errorMessage) {
-                            $scope.errorMessage = errorMessage;
-                        }
-                );
-        }
+    function addVariant() {
+        $scope.line.variants.push(angular.copy(variantTemplate));
+    }
+
+    function removeVariant($index) {
+        var removedVariantArray = $scope.line.variants.splice($index, 1);
+        removalQueue.push(removedVariantArray[0]);
+    }
+
+    function submitForm() {
+        Store.lines.updateWithVariants($scope.line, $scope.line.variants, removalQueue)
+            .then(
+                function () {
+                    location.hash = '#lines';
+                },
+                    function (errorMessage) {
+                        $scope.errorMessage = errorMessage;
+                    }
+            );
     }
 
     // --------------------------------
-    function fetchInitialLine() {
+    var variantTemplate = {
+        id: 0,
+        symbol: '',
+        departures: [],
+        variantStops: []
+    };
+
+    function fetchInitialData() {
         if (isNewAction()) {
-            if (Store.temp.line === null) {
-                $scope.line = {
-                    id: 0,
-                    name: '',
-                    variants: []
-                };
-            }
-            else {
-                $scope.line = Store.temp.line;
-            }
+            $scope.line = {
+                id: 0,
+                name: '',
+                variants: [angular.copy(variantTemplate)]
+            };
         }
         else {
-            Store.lines.get($routeParams.lineId).then(function(line) {
+            Store.lines.getWithVariants($routeParams.lineId).then(function(line) {
                 $scope.line = line;
             });
         }
@@ -61,4 +62,5 @@ timetableApp.controller('linesCreateOrEditController', ['$scope','$routeParams',
     function isNewAction() {
         return typeof $routeParams.lineId === 'undefined';
     }
+
 }]);

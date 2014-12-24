@@ -36,40 +36,22 @@ timetableApp.factory('Store', ['$http', '$q', function ($http, $q) {
 
     var lines = {
         addOrEdit: function (line) {
-            var request = $http({
-                method: 'post',
-                url: '/Ajax/AddOrEditLine',
-                data: line
-            });
-
-            return (request.then(handleSuccess, handleError));
+            return basicRequest('post',  'AddOrEditLine', line);
         },
         get: function (lineId) {
-            var request = $http({
-                method: 'get',
-                url: '/Ajax/GetLine?lineId=' + lineId,
-            });
-
-            return (request.then(handleSuccess, handleError));
+            return basicRequest('get', 'GetLine?lineId=' + lineId);
+        },
+        getWithVariants: function(lineId) {
+            return basicRequest('get', 'GetLineWithVariants?lineId=' + lineId);
         },
         list: function () {
-            var request = $http({
-                method: 'get',
-                url: '/Ajax/ListLines'
-            });
-
-            return (request.then(handleSuccess, handleError));
+            return basicRequest('get', 'ListLines');
         },
         remove: function (lineId) {
-            var request = $http({
-                method: 'post',
-                url: '/Ajax/RemoveLine',
-                data: {
-                    lineId: lineId
-                }
-            });
-
-            return (request.then(handleSuccess, handleError));
+            return basicRequest('post', 'RemoveLine', { lineId: lineId });
+        },
+        updateWithVariants: function (line, variants, variantsToRemove) {
+            return basicRequest('post', 'UpdateLineWithVariants', { line: line, variants: variants, variantsToRemove: variantsToRemove });
         }
     };
 
@@ -145,19 +127,38 @@ timetableApp.factory('Store', ['$http', '$q', function ($http, $q) {
             return (request.then(handleSuccess, handleError));
         },
         remove: function (variantId) {
-        var request = $http({
-            method: 'post',
-            url: '/Ajax/RemoveVariant',
-            data: {
-                variantId: variantId
-            }
-        });
+            var request = $http({
+                method: 'post',
+                url: '/Ajax/RemoveVariant',
+                data: {
+                    variantId: variantId
+                }
+            });
 
-        return (request.then(handleSuccess, handleError));
-    }
+            return (request.then(handleSuccess, handleError));
+        }
     };
 
     // --------------------------------
+    function basicRequest(method, url, data) {
+        var request;
+        if (method === 'get') {
+            request = $http({
+                method: method,
+                url: '/Ajax/' + url
+            });
+        }
+        else {
+            request = $http({
+                method: method,
+                url: '/Ajax/' + url,
+                data: data
+            });
+        }
+
+        return (request.then(handleSuccess, handleError));
+    }
+
     function handleError(response) {
 
         // The API response from the server should be returned in a

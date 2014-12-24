@@ -12,30 +12,56 @@ namespace RozkladyBackend.Controllers
 {
     public partial class AjaxController : Controller
     {
-        public void AddOrEditLine(Line line)
+        public void UpdateLineWithVariants(Line line, List<Variant> variants, List<Variant> variantsToRemove)
         {
             using (BackendContext db = new BackendContext())
             {
-                Line existsingLine = db.Lines.SingleOrDefault(l => l.Id == line.Id);
-
-                if (existsingLine == null)
+                if (line.Id > 0)
                 {
-                    db.Lines.Add(line);
+                    // entity exists
+                    db.Entry(line).State = System.Data.Entity.EntityState.Modified;
+
                 }
                 else
                 {
-                    existsingLine.Name = line.Name;
-                    existsingLine.Variants = line.Variants;
+                    db.Entry(line).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                }
+
+                foreach (var singleVariant in variants)
+                {
+                    if (singleVariant.Id > 0)
+                    {
+                        db.Entry(line.Variants.Single(v => v.Id == singleVariant.Id)).State = System.Data.Entity.EntityState.Modified;
+                    }
+                    else
+                    {
+                        singleVariant.Line = line;
+                        db.Variants.Add(singleVariant);
+                    }
+                }
+
+                if (variantsToRemove != null) { 
+                    foreach (var singleVariant in variantsToRemove)
+                    {
+                        if (singleVariant.Id > 0)
+                        {
+                            db.Departures.RemoveRange(db.Departures.Where(d => d.Variant.Id == singleVariant.Id));
+                            db.VariantStops.RemoveRange(db.VariantStops.Where(vs => vs.Variant.Id == singleVariant.Id));
+                            db.Variants.Remove(db.Variants.Single(v => v.Id == singleVariant.Id));
+                        }
+                    }
                 }
                 db.SaveChanges();
             }
         }
-        public JsonCamelCaseResult GetLine(int lineId)
+
+        public JsonCamelCaseResult GetLineWithVariants(int lineId)
         {
             using (BackendContext db = new BackendContext())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return new JsonCamelCaseResult(db.Lines.Single(s => s.Id == lineId), JsonRequestBehavior.AllowGet, PreserveReferencesHandling.None);
+                return new JsonCamelCaseResult(db.Lines.Include("Variants").Single(s => s.Id == lineId), JsonRequestBehavior.AllowGet, PreserveReferencesHandling.None);
             }
         }
 

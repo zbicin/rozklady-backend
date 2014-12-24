@@ -11,6 +11,31 @@
                 <input type="text" required class="form-control" name="name" id="name" placeholder="np. Nazwa Przewoźnika Justynów" ng-model="line.name">
             </div>
         </div>
+        <div class="col-sm-6 col-xs-12">
+            <label for="name">Symbol</label>
+            <div ng-repeat="variant in line.variants"
+                 ng-form="singleVariantForm"
+                 class="form-group"
+                 ng-class="{'has-error': singleVariantForm.symbol.$invalid && singleVariantForm.symbol.$dirty}">
+                <div class="input-group"
+                     ng-show="line.variants.length > 1">
+                    <input type="text" required class="form-control" name="symbol" placeholder="np. 98" ng-model="line.variants[$index].symbol">
+                    <div class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-danger"
+                                ng-click="removeVariant($index)">
+                            Usuń
+                        </button>
+                    </div>
+                </div>
+                <input ng-show="line.variants.length < 2" type="text" required class="form-control" name="symbol" placeholder="np. 98" ng-model="line.variants[$index].symbol">
+            </div>
+            <button type="button"
+                    ng-click="addVariant()"
+                    class="btn btn-primary">
+                Dodaj kolejny wariant
+            </button>
+        </div>
     </div>
     <div class="row">
         <div class="col-xs-12">

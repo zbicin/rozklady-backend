@@ -29,7 +29,7 @@
         </tr>
         <tr ng-repeat="variant in line.variants">
             <td>
-                    {{ line.name }}{{ variant.symbol }}
+                    {{ variant.symbol }}
             </td>
             <td class="text-right">
                 <div class="btn-group">
@@ -41,18 +41,17 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         <li>
-                            <a ng-href="#variants/createOrEdit/{{ variant.id }}"
-                               class="disabled">
+                            <a ng-href="#variants/createOrEdit/{{ variant.id }}">
                                 Podstawowe informacje
                             </a>
                         </li>
-                        <li>
+                        <li class="disabled">
                             <a ng-href="#departures/createOrEdit/{{ variant.id }}"
                                class="disabled">
                                 Godziny odjzadów
                             </a>
                         </li>
-                        <li>
+                        <li class="disabled">
                             <a ng-href="#variantStops/createOrEdit/{{ variant.id }}"
                                class="disabled">
                                 Przystanki na trasie
