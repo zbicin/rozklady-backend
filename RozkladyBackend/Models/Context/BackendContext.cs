@@ -21,5 +21,6 @@ namespace RozkladyBackend.Models.Context
         public DbSet<VariantStop> VariantStops { get; set; }
         public DbSet<Line> Lines { get; set; }
         public DbSet<Stop> Stops { get; set; }
+        public DbSet<Explanation> Explanations { get; set; }
     }
 }

@@ -37,6 +37,12 @@ timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page)
         }
     };
 
+    var explanations = {
+        list: function () {
+            return basicRequest('get', 'ListExplanations');
+        }
+    };
+
     var lines = {
         addOrEdit: function (line) {
             return basicRequest('post',  'AddOrEditLine', line);
@@ -121,10 +127,10 @@ timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page)
 
             return (request.then(handleSuccess, handleError));
         },
-        getWithDepartures: function (variantId) {
+        getWithDeparturesAndExplanations: function (variantId) {
             var request = $http({
                 method: 'get',
-                url: '/Ajax/GetVariantWithDepartures?variantId=' + variantId,
+                url: '/Ajax/GetVariantWithDeparturesAndExplanations?variantId=' + variantId,
             });
 
             return (request.then(handleSuccess, handleError));
@@ -184,6 +190,7 @@ timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page)
     // --------------------------------
     return {
         departures: departures,
+        explanations: explanations,
         stops: stops,
         lines: lines,
         temp: temp,

@@ -22,12 +22,12 @@ namespace RozkladyBackend.Controllers
             }
         }
 
-        public JsonCamelCaseResult GetVariantWithDepartures(int variantId)
+        public JsonCamelCaseResult GetVariantWithDeparturesAndExplanations(int variantId)
         {
             using (BackendContext db = new BackendContext())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return new JsonCamelCaseResult(db.Variants.Include("Departures").Single(v => v.Id == variantId), JsonRequestBehavior.AllowGet);
+                return new JsonCamelCaseResult(db.Variants.Include("Departures").Include("Departures.Explanations").Single(v => v.Id == variantId), JsonRequestBehavior.AllowGet, PreserveReferencesHandling.Arrays);
             }
         }
 

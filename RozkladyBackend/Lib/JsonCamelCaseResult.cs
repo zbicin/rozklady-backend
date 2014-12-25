@@ -52,7 +52,8 @@ namespace RozkladyBackend.Lib
             var jsonSerializerSettings = new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                PreserveReferencesHandling = ReferencesHandling
+                PreserveReferencesHandling = ReferencesHandling,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
             response.Write(JsonConvert.SerializeObject(Data, jsonSerializerSettings));
         }

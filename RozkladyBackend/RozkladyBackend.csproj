@@ -162,6 +162,7 @@
     <Compile Include="Controllers\Ajax\Ajax.DeparturesController.cs" />
     <Compile Include="Controllers\Ajax\Ajax.VariantsController.cs" />
     <Compile Include="Controllers\Ajax\Ajax.StopsController.cs" />
+    <Compile Include="Controllers\Ajax\Ajax.ExplanationsController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Models\Context\BackendContext.cs" />
     <Compile Include="Models\Context\BackendInitializer.cs" />
     <Compile Include="Models\Departure.cs" />
+    <Compile Include="Models\Explanation.cs" />
     <Compile Include="Models\Variant.cs" />
     <Compile Include="Models\VariantStop.cs" />
     <Compile Include="Models\Scaffolded\AccountViewModels.cs" />
@@ -283,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Ajax2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

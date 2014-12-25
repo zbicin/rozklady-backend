@@ -34,7 +34,7 @@ namespace RozkladyBackend.Models.Context
             var variant = new Variant()
             {
                 Line = line,
-                Symbol = "A",
+                Symbol = "98",
                 FirstLineStop = stop1,
                 LastLineStop = stop2
             };
@@ -52,36 +52,48 @@ namespace RozkladyBackend.Models.Context
                 Stop = stop2,
                 TimeOffset = 30
             };
+
+            var explanationA = new Explanation()
+            {
+                Abbreviation = "A",
+                Definition = "A modifier"
+            };
             
             var departure1 = new Departure() {
                 Hour = 9,
                 Minute = 5,
-                Symbol = "",
                 IsValidOnFriday = true,
                 IsValidOnMonday = true,
                 IsValidOnSaturday = true,
                 IsValidOnSunday = true,
                 IsValidOnThursday = true,
                 IsValidOnTueday = true,
-                IsValidOnWednesday = true
+                IsValidOnWednesday = true,
+                Variant = variant
             };
             var departure2 = new Departure() {
                 Hour = 9,
                 Minute = 20,
-                Symbol = "",
                 IsValidOnFriday = true,
                 IsValidOnMonday = true,
                 IsValidOnSaturday = true,
                 IsValidOnSunday = true,
                 IsValidOnThursday = true,
                 IsValidOnTueday = true,
-                IsValidOnWednesday = true
+                IsValidOnWednesday = true,
+                Variant = variant,
+                Explanations = new List<Explanation>()
+                {
+                    explanationA
+                }
             };
 
             context.Stops.Add(stop1);
             context.Stops.Add(stop2);
 
             context.Lines.Add(line);
+
+            context.Explanations.Add(explanationA);
 
             context.Departures.Add(departure1);
             context.Departures.Add(departure2);

@@ -10,7 +10,7 @@ namespace RozkladyBackend.Models
         public int Id { get; set; }
         public int Hour { get; set; }
         public int Minute { get; set; }
-        public String Symbol { get; set; }
+        public virtual List<Explanation> Explanations { get; set; }
         public virtual Variant Variant { get; set; }
         public Boolean IsValidOnMonday { get; set; }
         public Boolean IsValidOnTueday { get; set; }
@@ -19,5 +19,29 @@ namespace RozkladyBackend.Models
         public Boolean IsValidOnFriday { get; set; }
         public Boolean IsValidOnSaturday { get; set; }
         public Boolean IsValidOnSunday { get; set; }
+        public String Symbols
+        {
+            get
+            {
+                if (Explanations != null)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var singleExplanation in Explanations)
+                    {
+                        sb.Append(singleExplanation.Abbreviation);
+                    }
+                    return sb.ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public Departure()
+        {
+            this.Explanations = new List<Explanation>();
+        }
     }
 }

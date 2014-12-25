@@ -23,7 +23,7 @@
             {{ Page.next.title }}
         </a>
     </aside>
-    <div class="content pending" ng-class="{pending: Page.pendingRequestsCount > 0}">
+    <div class="content" ng-class="{pending: Page.pendingRequestsCount > 0}">
         <div class="alert alert-info alert-pending">Chwilkę</div>
         <h1 class="page-title">{{ Page.title }}</h1>
         <div ng-view></div>
