@@ -36,6 +36,7 @@ timetableApp.factory('Page', function () {
         },
         isNextVisible: function () {
             return isNavigationVisible('next');
-        }
+        },
+        pendingRequestsCount: 0
     };
 });

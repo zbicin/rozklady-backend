@@ -1,5 +1,5 @@
 ﻿'use strict';
-timetableApp.factory('Store', ['$http', '$q', function ($http, $q) {
+timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page) {
 
     var departures = {
         addOrEditMultiple: function(departures) {
@@ -144,6 +144,7 @@ timetableApp.factory('Store', ['$http', '$q', function ($http, $q) {
 
     // --------------------------------
     function basicRequest(method, url, data) {
+        Page.pendingRequestsCount = Page.pendingRequestsCount+1;
         var request;
         if (method === 'get') {
             request = $http({
@@ -163,7 +164,7 @@ timetableApp.factory('Store', ['$http', '$q', function ($http, $q) {
     }
 
     function handleError(response) {
-
+        Page.pendingRequestsCount = Page.pendingRequestsCount - 1;
         // The API response from the server should be returned in a
         // nomralized format. However, if the request was not handled by the
         // server (or what not handles properly - ex. server error), then we
@@ -176,6 +177,7 @@ timetableApp.factory('Store', ['$http', '$q', function ($http, $q) {
     }
 
     function handleSuccess(response) {
+        Page.pendingRequestsCount = Page.pendingRequestsCount - 1;
         return (response.data);
     }
 

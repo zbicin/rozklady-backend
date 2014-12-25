@@ -21,6 +21,28 @@ section aside {
     margin: 0 320px 0 120px;
     overflow-x: hidden;
     min-height: 100vh;
+    position: relative;
+}
+
+.content .alert-pending {
+    display: none;
+    position: absolute;
+    top: 60px;
+    width: 300px;
+    left: calc(50% - 150px);
+    text-align: center;
+}
+
+.content.pending {
+    pointer-events: none;
+}
+
+.content.pending .alert-pending {
+    display: block;
+}
+
+.content.pending>div[ng-view] {
+    opacity: 0.3;
 }
 
 .page-title {
@@ -30,10 +52,12 @@ section aside {
 table.table-timetable thead tr:first-child th {
     text-align: center;
 }
+
 table.table-timetable thead tr:last-child th:nth-child(even),
 table.table-timetable tbody tr td:nth-child(even) {
     text-align: left;
 }
+
 table.table-timetable thead tr:last-child th:nth-child(odd),
 table.table-timetable tbody tr td:nth-child(odd) {
     text-align: right;
