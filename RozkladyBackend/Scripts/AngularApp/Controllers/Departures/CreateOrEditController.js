@@ -51,16 +51,21 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
     }
 
     function removeExplanation(explanation) {
-        for (var i = 0; i < $scope.variant.departures.length; i++) {
-            var currentDeparture = $scope.variant.departures[i];
-            var indexOfExplanation = currentDeparture.explanations.indexOf(explanation);
-            if (indexOfExplanation > -1) {
-                currentDeparture.explanations.splite(indexOfExplanation, 1);
-            }
-        }
+        if (confirm('Czy na pewno chcesz usunąć objaśnienie "' + explanation.abbreviation + ' - ' + explanation.definition + '"? Usunie to również litery objaśnień przy powiązanych godzinach odjazdu.')) {
+            for (var i = 0; i < $scope.variant.departures.length; i++) {
+                var currentDeparture = $scope.variant.departures[i];
 
-        $scope.explanations.splice($scope.explanations.indexOf(explanation),1);
-        explanationsRemovalQueue.push(explanation);
+                for (var j = 0; j < currentDeparture.explanations.length; j++) {
+                    if (currentDeparture.explanations[j].abbreviation === explanation.abbreviation) {
+                        currentDeparture.explanations.splice(j, 1);
+                        break;
+                    }
+                }
+            }
+
+            $scope.explanations.splice($scope.explanations.indexOf(explanation), 1);
+            explanationsRemovalQueue.push(explanation);
+        }
     }
 
     function submitForm() {
