@@ -54,6 +54,11 @@
                         {{ explanation.abbreviation }}
                         -
                         {{ explanation.definition }}
+                        <button type="button"
+                                class="btn btn-xs btn-danger"
+                                ng-click="removeExplanation(explanation)">
+                            Usuń
+                        </button>
                     </label>
                 </div>
             </div>
@@ -79,12 +84,12 @@
                     <tr ng-repeat="hour in hoursArray">
                         <td>{{ hour }}</td>
                         <td>
-                            <span ng-repeat="singleDeparture in departures | filter:{hour:hour}:true | filter:isValidOnWorkdaysFilter | orderBy:'minute'"
+                            <span ng-repeat="singleDeparture in variant.departures | filter:{hour:hour}:true | filter:isValidOnWorkdaysFilter | orderBy:'minute'"
                                   class="label"
                                   ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
                                 <span>
                                     {{ singleDeparture.minute < 10 ? "0" + singleDeparture.minute : singleDeparture.minute }}
-                                    {{ singleDeparture.symbols }}
+                                    <span ng-repeat="explanation in singleDeparture.explanations">{{explanation.abbreviation}}</span>
                                 </span>
                                 <span ng-click="removeDeparture(singleDeparture)">
                                     &nbsp;x&nbsp;
@@ -93,12 +98,12 @@
                         </td>
                         <td>{{ hour }}</td>
                         <td>
-                            <span ng-repeat="singleDeparture in departures | filter:{hour:hour, isValidOnSaturday:true}:true | orderBy:'minute'"
+                            <span ng-repeat="singleDeparture in variant.departures | filter:{hour:hour, isValidOnSaturday:true}:true | orderBy:'minute'"
                                   class="label"
                                   ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
                                 <span>
                                     {{ singleDeparture.minute < 10 ? "0" + singleDeparture.minute : singleDeparture.minute }}
-                                    {{ singleDeparture.symbols }}
+                                    <span ng-repeat="explanation in singleDeparture.explanations">{{explanation.abbreviation}}</span>
                                 </span>
                                 <span ng-click="removeDeparture(singleDeparture)">
                                     &nbsp;x&nbsp;
@@ -107,12 +112,12 @@
                         </td>
                         <td>{{ hour }}</td>
                         <td>
-                            <span ng-repeat="singleDeparture in departures | filter:{hour:hour, isValidOnSunday:true}:true | orderBy:'minute'"
+                            <span ng-repeat="singleDeparture in variant.departures | filter:{hour:hour, isValidOnSunday:true}:true | orderBy:'minute'"
                                   class="label"
                                   ng-class="{'label-default': singleDeparture.id > 0, 'label-info': singleDeparture.id < 1}">
                                 <span>
                                     {{ singleDeparture.minute < 10 ? "0" + singleDeparture.minute : singleDeparture.minute }}
-                                    {{ singleDeparture.symbols }}
+                                    <span ng-repeat="explanation in singleDeparture.explanations">{{explanation.abbreviation}}</span>
                                 </span>
                                 <span ng-click="removeDeparture(singleDeparture)">
                                     &nbsp;x&nbsp;

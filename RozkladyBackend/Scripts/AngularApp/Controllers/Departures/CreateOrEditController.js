@@ -14,6 +14,7 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
 
     $scope.proceed = proceed;
     $scope.removeDeparture = removeDeparture;
+    $scope.removeExplanation = removeExplanation;
     $scope.submitForm = submitForm;
     $scope.toggleAbbreviation = toggleAbbreviation;
 
@@ -21,6 +22,7 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
 
     // --------------------------------
     var departuresRemovalQueue = [];
+    var explanationsRemovalQueue = [];
 
     function isValidOnWorkdaysFilter(item) {
         return item.isValidOnMonday ||
@@ -31,7 +33,7 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
     }
 
     function proceed() {
-        Store.departures.update($scope.variant.id, $scope.departures, departuresRemovalQueue)
+        Store.departures.update($scope.variant, departuresRemovalQueue, explanationsRemovalQueue)
         .then(
             function () {
                 location.hash = '#lines';
@@ -43,9 +45,22 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
     }
 
     function removeDeparture(departureToRemove) {
-        var index = $scope.departures.indexOf(departureToRemove);
-        var removedElementArray = $scope.departures.splice(index, 1);
+        var index = $scope.variant.departures.indexOf(departureToRemove);
+        var removedElementArray = $scope.variant.departures.splice(index, 1);
         departuresRemovalQueue.push(removedElementArray[0]);
+    }
+
+    function removeExplanation(explanation) {
+        for (var i = 0; i < $scope.variant.departures.length; i++) {
+            var currentDeparture = $scope.variant.departures[i];
+            var indexOfExplanation = currentDeparture.explanations.indexOf(explanation);
+            if (indexOfExplanation > -1) {
+                currentDeparture.explanations.splite(indexOfExplanation, 1);
+            }
+        }
+
+        $scope.explanations.splice($scope.explanations.indexOf(explanation),1);
+        explanationsRemovalQueue.push(explanation);
     }
 
     function submitForm() {
@@ -64,7 +79,8 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
             isValidOnSaturday: $scope.isValidOnSaturday,
             isValidOnSunday: $scope.isValidOnSunday,
             minute: parseInt(minute, 10),
-            symbols: symbols
+            symbols: symbols,
+            explanations: []
         };
 
         var splittedSymbols = symbols.split('');
@@ -76,16 +92,21 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
                 if (newDefinition === null) {
                     return;
                 }
-                
-                $scope.explanations.push({
+                var newExplanation = {
                     id: 0,
                     abbreviation: currentSymbol,
                     definition: newDefinition
-                });
+                };
+
+                $scope.explanations.push(newExplanation);
+                newDeparture.explanations.push(newExplanation);
+            }
+            else {
+                newDeparture.explanations.push($filter('filter')($scope.explanations, { abbreviation: currentSymbol })[0]);
             }
         }
 
-        $scope.departures.push(newDeparture);
+        $scope.variant.departures.push(newDeparture);
 
         $scope.rawDeparture = '';
         $scope.rawDepartureForm.$setPristine();
@@ -104,7 +125,6 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
     function fetchInitialData() {
         Store.variants.getWithDeparturesAndExplanations($routeParams.variantId).then(function (variant) {
             $scope.variant = variant;
-            $scope.departures = variant.departures.$values;
         });
         Store.explanations.list().then(function (explanations) {
             $scope.explanations = explanations;
