@@ -45,7 +45,7 @@ namespace RozkladyBackend.Controllers
         {
             using (BackendContext db = new BackendContext())
             {
-                return new JsonCamelCaseResult(db.Stops.ToList(), JsonRequestBehavior.AllowGet);
+                return new JsonCamelCaseResult(db.Stops.OrderBy(s => s.Name).ToList(), JsonRequestBehavior.AllowGet);
             }
         }
 

@@ -61,7 +61,7 @@ namespace RozkladyBackend.Controllers
             using (BackendContext db = new BackendContext())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return new JsonCamelCaseResult(db.Lines.Include("Variants").Single(s => s.Id == lineId), JsonRequestBehavior.AllowGet, PreserveReferencesHandling.None);
+                return new JsonCamelCaseResult(db.Lines.Include("Variants").Single(s => s.Id == lineId), JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -70,7 +70,7 @@ namespace RozkladyBackend.Controllers
             using (BackendContext db = new BackendContext())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return new JsonCamelCaseResult(db.Lines.Include("Variants").ToList(), JsonRequestBehavior.AllowGet, PreserveReferencesHandling.None);
+                return new JsonCamelCaseResult(db.Lines.Include("Variants").ToList(), JsonRequestBehavior.AllowGet);
             }
         }
 

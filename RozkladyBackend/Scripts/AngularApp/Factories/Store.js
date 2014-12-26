@@ -83,12 +83,7 @@ timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page)
             return (request.then(handleSuccess, handleError));
         },
         list: function () {
-            var request = $http({
-                method: 'get',
-                url: '/Ajax/ListStops'
-            });
-
-            return (request.then(handleSuccess, handleError));
+            return basicRequest('get', 'ListStops');
         },
         remove: function (stopId) {
             var request = $http({
@@ -148,6 +143,12 @@ timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page)
         }
     };
 
+    var variantStops = {
+        getForVariant: function (variantId) {
+            return basicRequest('get', 'GetVariantStopsForVariant?variantId=' + variantId);
+        }
+    };
+
     // --------------------------------
     function basicRequest(method, url, data) {
         Page.pendingRequestsCount = Page.pendingRequestsCount+1;
@@ -194,7 +195,8 @@ timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page)
         stops: stops,
         lines: lines,
         temp: temp,
-        variants: variants
+        variants: variants,
+        variantStops: variantStops
     };
 
 }]);

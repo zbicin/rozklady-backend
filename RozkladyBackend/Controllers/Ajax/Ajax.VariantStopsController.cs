@@ -1,5 +1,4 @@
 ﻿using RozkladyBackend.Lib;
-using RozkladyBackend.Models;
 using RozkladyBackend.Models.Context;
 using System;
 using System.Collections.Generic;
@@ -11,12 +10,12 @@ namespace RozkladyBackend.Controllers
 {
     public partial class AjaxController : Controller
     {
-        public JsonCamelCaseResult ListExplanations()
+        public JsonCamelCaseResult GetVariantStopsForVariant(int variantId) 
         {
             using (BackendContext db = new BackendContext())
             {
-                List<Explanation> explanations = db.Explanations.OrderBy(e => e.Abbreviation).ToList();
-                return new JsonCamelCaseResult(explanations, JsonRequestBehavior.AllowGet);
+                db.Configuration.LazyLoadingEnabled = false;
+                return new JsonCamelCaseResult(db.VariantStops.Include("Stop").Where(vs => vs.Variant.Id == variantId).OrderBy(vs => vs.TimeOffset).ToList(), JsonRequestBehavior.AllowGet);
             }
         }
     }
