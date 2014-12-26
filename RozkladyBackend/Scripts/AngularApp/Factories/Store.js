@@ -146,6 +146,9 @@ timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page)
     var variantStops = {
         getForVariant: function (variantId) {
             return basicRequest('get', 'GetVariantStopsForVariant?variantId=' + variantId);
+        },
+        update: function (variantId, stops, variantStops, variantStopsToRemove) {
+            return basicRequest('post', 'UpdateVariantStops', {variantId: variantId, stops: stops, variantStops: variantStops, variantStopsToRemove: variantStopsToRemove});
         }
     };
 

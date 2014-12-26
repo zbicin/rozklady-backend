@@ -8,6 +8,7 @@ timetableApp.controller('variantStopsCreateOrEditController', ['$scope','$routeP
 
     $scope.handleKeyDown = handleKeyDown;
     $scope.isAutocompleteVisible = isAutocompleteVisible;
+    $scope.proceed = proceed;
     $scope.removeVariantStop = removeVariantStop;
     $scope.submitForm = submitForm;
 
@@ -30,6 +31,18 @@ timetableApp.controller('variantStopsCreateOrEditController', ['$scope','$routeP
         return typeof $scope.rawVariantStopForm.rawVariantStop.$viewValue !== 'undefined' &&
             $scope.rawVariantStopForm.rawVariantStop.$viewValue !== null &&
             $scope.rawVariantStopForm.rawVariantStop.$viewValue.length > 2;
+    }
+
+    function proceed() {
+        Store.variantStops.update($routeParams.variantId, $scope.stops, $scope.variantStops, variantStopRemovalQueue)
+        .then(
+            function () {
+                location.hash = '#lines';
+            },
+                function (errorMessage) {
+                    $scope.errorMessage = errorMessage;
+                }
+        );
     }
 
     function removeVariantStop(variantStop) {
