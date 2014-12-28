@@ -1,14 +1,15 @@
 ﻿'use strict';
 timetableApp.controller('variantStopsCreateOrEditController', ['$scope','$routeParams', 'Page', 'Store', '$filter', function ($scope, $routeParams, Page, Store, $filter) {
+    Page.reset();
     Page.title = 'Przystanki na trasie linii';
-    Page.back.url = '#lines';
+    Page.cancel.url = '#lines';
+    Page.proceed.action = proceed;
 
     $scope.errorMessage = null;
     $scope.rawVariantStop = '';
 
     $scope.handleKeyDown = handleKeyDown;
     $scope.isAutocompleteVisible = isAutocompleteVisible;
-    $scope.proceed = proceed;
     $scope.removeVariantStop = removeVariantStop;
     $scope.submitForm = submitForm;
 

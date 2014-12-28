@@ -1,7 +1,9 @@
 ﻿'use strict';
-timetableApp.controller('linesIndexController', ['Page', 'Store', '$scope', function (Page, Store, $scope) {
+timetableApp.controller('linesIndexController', ['Page', 'Store', '$scope', function (Page, Store, $scope) {   
     Page.title = 'Linie';
     Page.back.url = '#home';
+    Page.proceed.action = null;
+    Page.cancel.url = '';
 
     $scope.goToAddLine = goToAddLine;
     $scope.lines = [];

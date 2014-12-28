@@ -4,35 +4,8 @@
 </div>
 <form role="form" name="rawVariantStopForm" ng-submit="submitForm()">
     <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <div class="form-group"
-                 ng-class="{'has-success': rawVariantStopForm.rawVariantStop.$valid && rawVariantStopForm.rawVariantStop.$dirty}">
-                <label>Dodaj nowy</label>
-                <div class="input-group">
-                    <input type="text"
-                           ng-model="rawVariantStop"
-                           name="rawVariantStop"
-                           class="form-control"
-                           ng-keydown="handleKeyDown($event)"
-                           ng-pattern="/^(([a-z]|[A-Z]|[ąęółżźćńśĄĘÓŁŻŹĆŃŚ]|[0-9]|[\\\/ \-()\[\]\{\}\.\,#]){3,100})( )[0-9]{1,3}m$/"
-                           placeholder="np. Łódzka/Główna 2m" />
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-info" ng-disabled="rawVariantStopForm.rawVariantStop.$invalid">
-                            Dodaj
-                        </button>
-                    </span>
-                </div>
-                <ul class="text-muted"
-                    ng-show="isAutocompleteVisible()">
-                    <li ng-repeat="stop in stops | filter:{name: rawVariantStopForm.rawVariantStop.$viewValue}">
-                        {{ stop.name }}
-                        <kbd ng-show="$index === 0">Ctrl + &#8594;</kbd>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6">
-            <table class="table">
+        <div class="col-xs-12 col-sm-7">
+            <table class="table table-bordered table-condensed table-striped">
                 <thead>
                     <tr>
                         <th>Nazwa przystanku</th>
@@ -59,6 +32,54 @@
                 </tbody>
             </table>
         </div>
+        <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Dodaj nowy</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group"
+                         ng-class="{'has-success': rawVariantStopForm.rawVariantStop.$valid && rawVariantStopForm.rawVariantStop.$dirty}">
+                        <div class="input-group">
+                            <input type="text"
+                                   ng-model="rawVariantStop"
+                                   name="rawVariantStop"
+                                   class="form-control"
+                                   required
+                                   ng-keydown="handleKeyDown($event)"
+                                   ng-pattern="/^(([a-z]|[A-Z]|[ąęółżźćńśĄĘÓŁŻŹĆŃŚ]|[0-9]|[\\\/ \-()\[\]\{\}\.\,#]){3,100})( )[0-9]{1,3}m$/"
+                                   placeholder="np. Łódzka/Główna 2m lub Rokicińska 23 5m" />
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success" ng-disabled="rawVariantStopForm.rawVariantStop.$invalid">
+                                    Dodaj
+                                </button>
+                            </span>
+                        </div>
+                        <p class="help-block">
+                            Wpisz nazwę przystanku oraz ilość minut potrzebnych autobusowi do dojazdu, a następnie naciśnij klawisz Enter.
+                            Jeśli nazwy nieznanego przystanku, system zaproponuje jego utworzenie.
+                        </p>
+                    </div>
+                    <div class="form-group form-group-scrollable"
+                         ng-show="stops.length > 0">
+                        <table class="table table-condensed table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Dotychczas używane nazwy przystanków</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="stop in stops"
+                                    ng-class="{warning: rawVariantStopForm.rawVariantStop.$viewValue.indexOf(stop.name) > -1}">
+                                    <td>
+                                        {{ stop.name }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
-<button type="button" class="btn btn-success" ng-click="proceed()">Zapisz ten bałagan</button>

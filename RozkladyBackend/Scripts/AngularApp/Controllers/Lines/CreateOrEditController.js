@@ -1,7 +1,9 @@
 ﻿'use strict';
 timetableApp.controller('linesCreateOrEditController', ['$scope','$routeParams', 'Page', 'Store', function ($scope, $routeParams, Page, Store) {
     Page.title = isNewAction() ? 'Dodaj linię' : 'Edytuj linię';
-    Page.back.url = '#lines';
+    Page.reset();
+    Page.proceed.action = submitForm;
+    Page.cancel.url = '#lines';
 
     $scope.isNewAction = isNewAction();
     $scope.errorMessage = null;

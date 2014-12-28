@@ -1,24 +1,41 @@
 ﻿'use strict';
 timetableApp.factory('Page', function () {
-    var back = {
-        title: 'Powrót',
-        url: '',
-        action: null
-    };
+    var back,
+        proceed,
+        cancel;
 
-    var next = {
-        title: 'Dalej',
-        url: '',
-        action: null
-    };
+    initFields();
+
+    function initFields() {
+        back = {
+            title: 'Powrót',
+            url: '',
+            action: null
+        };
+
+        proceed = {
+            title: 'Zapisz zmiany',
+            url: '',
+            action: null
+        };
+
+        cancel = {
+            title: 'Anuluj',
+            url: '',
+            action: null
+        };
+    }
 
     function isNavigationVisible(which) {
         var navigation;
         if (which === 'back') {
             navigation = back;
         }
-        else if (which === 'next') {
-            navigation = next;
+        else if (which === 'proceed') {
+            navigation = proceed;
+        }
+        else if (which === 'cancel') {
+            navigation = cancel;
         }
         else {
             return false;
@@ -30,13 +47,25 @@ timetableApp.factory('Page', function () {
     return {
         title: '',
         back: back,
-        next: next,
+        proceed: proceed,
+        cancel: cancel,
         isBackVisible: function () {
             return isNavigationVisible('back');
         },
-        isNextVisible: function () {
-            return isNavigationVisible('next');
+        isProceedVisible: function () {
+            return isNavigationVisible('proceed');
         },
-        pendingRequestsCount: 0
+        isCancelVisible: function () {
+            return isNavigationVisible('cancel');
+        },
+        pendingRequestsCount: 0,
+        reset: function () {
+            this.back.url = '';
+            this.proceed.url = '';
+            this.cancel.url = '';
+            this.back.action = null;
+            this.proceed.action = null;
+            this.cancel.action = null;
+        }
     };
 });

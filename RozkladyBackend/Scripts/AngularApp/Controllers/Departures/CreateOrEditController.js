@@ -1,7 +1,9 @@
 ﻿'use strict';
 timetableApp.controller('departuresCreateOrEditController',    ['$scope','$routeParams', 'Page', 'Store', '$filter',         function ($scope, $routeParams, Page, Store, $filter) {
     Page.title = 'Odjazdy linii';
-    Page.back.url = '#lines';
+    Page.cancel.url = '#lines';
+    Page.proceed.action = proceed;
+    Page.back.url = '';
 
     $scope.errorMessage = null;
     $scope.explanationsAddQueue = [];

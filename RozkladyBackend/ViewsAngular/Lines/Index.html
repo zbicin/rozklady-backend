@@ -1,4 +1,4 @@
-﻿<button type="button" ng-click="goToAddLine()" class="btn btn-default btn-sm">Dodaj</button>
+﻿<button type="button" ng-click="goToAddLine()" class="btn btn-primary btn-sm">Dodaj</button>
 
 <table class="table">
     <thead>
@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody ng-repeat="line in lines">
-        <tr class="info">
+        <tr class="active">
             <td><strong>{{ line.name }}</strong></td>
             <td class="text-right">
                 <a ng-href="#lines/createOrEdit/{{ line.id }}"

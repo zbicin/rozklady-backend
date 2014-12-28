@@ -1,27 +1,50 @@
-﻿aside.sidebar {
-    float: right;
-    width: 200px;
-    min-height: 100vh;
-    background: #222;
-    border-left: 1px solid #111;
-    color: #fff;
-    padding: 20px;
+﻿nav.sidebar {
+    float: left;
+    width: 120px;
+    height: 100vh;
+    background: #3498D8;
+    border-right: 1px solid #1276B6;
+    padding: 20px 0;
     text-align: center;
 }
 
-section aside {
-    width: 120px;
-    min-height: 100vh;
-    text-align: center;
-    padding: 20px;
-}
+    nav.sidebar a {
+        display: block;
+        color: #fff;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        padding: 29px 0 30px;
+        cursor: pointer;
+    }
+
+    nav.sidebar a.invisible {
+        visibility: visible;
+        margin-bottom: -120px;
+        color: #fff;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    nav.sidebar a:hover {
+        color: #2C3E50;
+        text-decoration: none;
+    }
+
+    nav.sidebar a .glyphicon {
+        display: block;
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
 
 .content {
     padding: 20px;
-    margin: 0 320px 0 120px;
+    margin: 0;
     overflow-x: hidden;
-    min-height: 100vh;
+    height: 100vh;
     position: relative;
+    overflow-y: auto;
 }
 
 .content .alert-pending {
@@ -62,4 +85,26 @@ table.table-timetable thead tr:last-child th:nth-child(odd),
 table.table-timetable tbody tr td:nth-child(odd) {
     text-align: right;
     width: 40px;
+}
+
+.btn.btn-visible-on-hover {
+    visibility: hidden;
+}
+*:hover > .btn.btn-visible-on-hover {
+    visibility: visible;
+}
+
+form h4 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table .label {
+    display: inline-block;
+    margin: 0 2px 0 0;
+}
+
+.form-group.form-group-scrollable {
+    max-height: 200px;
+    overflow-y: auto;
 }

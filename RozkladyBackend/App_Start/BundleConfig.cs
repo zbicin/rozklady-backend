@@ -24,7 +24,8 @@ namespace RozkladyBackend
                       "~/Scripts/Lib/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootswatch.yeti.min.css",
+                      "~/Content/bootswatch.flatly.min.css",
+                      "~/Content/bootswatch.flatly.overrides.css",
                       "~/Content/animate.min.css",
                       "~/Content/app.css"));
 

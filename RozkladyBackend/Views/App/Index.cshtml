@@ -2,30 +2,33 @@
     Layout = "~/Views/Shared/_LayoutApp.cshtml";
 }
 
-<aside class="sidebar">
-    Sidebar
-    <a href="#home" class="btn btn-default">Ekran główny</a>
-</aside>
+<nav class="sidebar">
+    <a ng-class="{invisible: !Page.isProceedVisible() }"
+       ng-click="Page.proceed.action()"
+       ng-href="{{ Page.proceed.url }}">
+        <i class="glyphicon glyphicon-floppy-disk"></i>
+        {{ Page.proceed.title }}
+    </a>
+    <a ng-class="{invisible: !Page.isCancelVisible() }"
+       ng-click="Page.cancel.action()"
+       ng-href="{{ Page.cancel.url }}">
+        <i class="glyphicon glyphicon-remove"></i>
+        {{ Page.cancel.title }}
+    </a>
+    <a ng-class="{invisible: !Page.isBackVisible() }"
+       ng-click="Page.back.action()"
+       ng-href="{{ Page.back.url }}">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        {{ Page.back.title }}
+    </a>
+</nav>
 <section>
-    <aside class="pull-left">
-        <a ng-show="Page.isBackVisible()"
-           ng-click="Page.back.action()"
-           ng-href="{{ Page.back.url }}"
-           class="btn btn btn-default">
-            {{ Page.back.title }}
-        </a>
-    </aside>
-    <aside class="pull-right">
-        <a ng-show="Page.isNextVisible()"
-           ng-click="Page.next.action()"
-           ng-href="{{ Page.next.url }}"
-           class="btn btn btn-primary">
-            {{ Page.next.title }}
-        </a>
-    </aside>
+
     <div class="content" ng-class="{pending: Page.pendingRequestsCount > 0}">
+        <h1 class="page-title">
+            {{ Page.title }}
+        </h1>
         <div class="alert alert-info alert-pending">Chwilkę</div>
-        <h1 class="page-title">{{ Page.title }}</h1>
         <div ng-view></div>
     </div>
 </section>
