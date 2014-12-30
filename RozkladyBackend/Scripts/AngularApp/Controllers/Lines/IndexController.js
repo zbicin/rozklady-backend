@@ -27,7 +27,7 @@ timetableApp.controller('linesIndexController', ['Page', 'Store', '$scope', func
     }
 
     function removeVariant(line, variant) {
-        if (confirm('Czy na pewno chcesz usunąć wariant linii ' + line.name + variant.symbol + '?')) {
+        if (confirm('Czy na pewno chcesz usunąć wariant linii ' + line.name + ' ' + variant.symbol + ', ' + variant.description + '?')) {
             Store.variants.remove(variant.id).then(function () {
                 fetchLines();
             });

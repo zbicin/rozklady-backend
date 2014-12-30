@@ -32,6 +32,14 @@ namespace RozkladyBackend.Controllers
             }
         }
 
-
+        public void RemoveVariant(int variantId)
+        {
+            using (BackendContext db = new BackendContext())
+            {
+                db.VariantStops.RemoveRange(db.VariantStops.Where(vs => vs.Variant.Id == variantId).ToList());
+                db.Variants.Remove(db.Variants.Single(v=>v.Id == variantId));
+                db.SaveChanges();
+            }
+        }
     }
 }

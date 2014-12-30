@@ -36,8 +36,7 @@ namespace RozkladyBackend.Controllers
                     }
                     else
                     {
-                        singleVariant.Line = line;
-                        db.Variants.Add(singleVariant);
+                        db.Entry(singleVariant).State = System.Data.Entity.EntityState.Added;
                     }
                 }
 

@@ -20,6 +20,18 @@
             </div>
         </div>
     </div>
+    <div class="row" ng-show="!isNewAction()">
+        <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label>URL rozkładu .json</label>
+                <p class="form-control-static">
+                    <a ng-href="{{ getJsonUrl() }}" target="_blank">
+                        {{ getJsonUrl() }}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <button type="submit" class="btn btn-primary" ng-disabled="createOrEditStopForm.$invalid">Zapisz</button>

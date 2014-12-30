@@ -2,7 +2,9 @@
     <strong>Wystąpił błąd.</strong>
     {{ errorMessage }}
 </div>
-
+<p class="help-block">
+    Edytujesz wariant <em>{{ variant.symbol }}, {{ variant.description }}</em>.
+</p>
 <form role="form" novalidate ng-submit="submitForm()" name="rawDepartureForm">
     <div class="row">
         <div class="col-xs-12 col-sm-7">

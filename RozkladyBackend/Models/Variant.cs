@@ -12,6 +12,8 @@ namespace RozkladyBackend.Models
         public int Id { get; set; }
         [JsonProperty(PropertyName = "symbol")]
         public String Symbol { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public String Description { get; set; }
         [JsonIgnore]
         public virtual Line Line { get; set; }
         [JsonProperty(PropertyName = "firstLineStop")]

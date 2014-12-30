@@ -6,11 +6,17 @@ timetableApp.controller('stopsCreateOrEditController', ['$scope','$routeParams',
     $scope.errorMessage = null;
     $scope.stop = null;
 
+    $scope.getJsonUrl = getJsonUrl;
+    $scope.isNewAction = isNewAction;
     $scope.submitForm = submitForm;
 
     fetchInitialStop();
 
     // --------------------------------
+    function getJsonUrl() {
+        return location.protocol + '//' + location.host + '/API/Timetable?stopId=' + $routeParams.stopId;
+    }
+
     function submitForm() {
         Store.stops.addOrEdit($scope.stop)
             .then(

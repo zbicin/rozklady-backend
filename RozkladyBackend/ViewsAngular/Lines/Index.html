@@ -1,4 +1,4 @@
-﻿<button type="button" ng-click="goToAddLine()" class="btn btn-primary btn-sm">Dodaj</button>
+﻿<button type="button" ng-click="goToAddLine()" class="btn btn-primary">Dodaj</button>
 
 <table class="table">
     <thead>
@@ -11,14 +11,14 @@
     </thead>
     <tbody ng-repeat="line in lines">
         <tr class="active">
-            <td><strong>{{ line.name }}</strong></td>
+            <td colspan="2"><strong>{{ line.name }}</strong></td>
             <td class="text-right">
                 <a ng-href="#lines/createOrEdit/{{ line.id }}"
-                   class="btn btn-xs btn-default">
+                   class="btn btn-sm btn-default">
                     Informacje i warianty
                 </a>
                 <a ng-click="removeLine(line)"
-                   class="btn btn-xs btn-default">
+                   class="btn btn-sm btn-default">
                     Usuń
                 </a>
             </td>
@@ -27,17 +27,20 @@
             <td>
                     {{ variant.symbol }}
             </td>
+            <td>
+                {{ variant.description }}
+            </td>
             <td class="text-right">
                 <a ng-href="#departures/createOrEdit/{{ variant.id }}"
-                   class="btn btn-xs btn-default">
+                   class="btn btn-sm btn-default">
                     Godziny odjazdów
                 </a>
                 <a ng-href="#variantStops/createOrEdit/{{ variant.id }}"
-                   class="btn btn-xs btn-default">
+                   class="btn btn-sm btn-default">
                     Przystanki na trasie
                 </a>
                 <a ng-click="removeVariant(line, variant)"
-                   class="btn btn-xs btn-default">
+                   class="btn btn-sm btn-default">
                     Usuń
                 </a>
             </td>

@@ -8,12 +8,12 @@
         <div class="col-sm-6 col-xs-12">
             <div class="form-group" ng-class="{'has-error': createOrEditLineForm.name.$invalid && createOrEditLineForm.name.$dirty}">
                 <label for="name">Nazwa</label>
-                <input type="text" 
-                       required 
-                       class="form-control" 
-                       name="name" 
-                       id="name" 
-                       placeholder="np. Nazwa Przewoźnika Justynów lub symbol danej linii 98" 
+                <input type="text"
+                       required
+                       class="form-control"
+                       name="name"
+                       id="name"
+                       placeholder="np. Nazwa Przewoźnika Justynów lub symbol danej linii 98"
                        ng-model="line.name">
                 <p class="help-block">
                     Dowolna nazwa pomagająca Ci jednoznacznie zindentyfikować linię.
@@ -22,37 +22,43 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6 col-xs-12">
+    <div class="row" ng-repeat="variant in line.variants"
+         ng-form="singleVariantForm">
+        <div class="col-sm-5 col-xs-12">
             <label for="name">Symbol</label>
-            <div ng-repeat="variant in line.variants"
-                 ng-form="singleVariantForm"
-                 class="form-group"
+            <div class="form-group"
                  ng-class="{'has-error': singleVariantForm.symbol.$invalid && singleVariantForm.symbol.$dirty}">
-                <div class="input-group"
-                     ng-show="line.variants.length > 1">
-                    <input type="text"
-                           required
-                           class="form-control"
-                           name="symbol"
-                           placeholder="np. 98 lub 410A"
-                           ng-model="line.variants[$index].symbol">
-                    <div class="input-group-btn">
-                        <button type="button"
-                                class="btn btn-default"
-                                ng-click="removeVariant($index)">
-                            Usuń
-                        </button>
-                    </div>
-                </div>
-                <input ng-show="line.variants.length < 2"
-                       type="text"
+                <input type="text"
                        required
                        class="form-control"
                        name="symbol"
                        placeholder="np. 98 lub 410A"
-                       ng-model="line.variants[0].symbol">
+                       ng-model="line.variants[$index].symbol">
             </div>
+        </div>
+        <div class="col-sm-5 col-xs-12">
+            <label for="name">Opis</label>
+            <div class="form-group"
+                 ng-class="{'has-error': singleVariantForm.description.$invalid && singleVariantForm.description.$dirty}">
+                <input type="text"
+                       required
+                       class="form-control"
+                       name="description"
+                       placeholder="np. Mobilis Group - Justynów - Andrespol - Łódź"
+                       ng-model="line.variants[$index].description">
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-12">
+            <button type="button"
+                    class="btn btn-default"
+                    ng-show="line.variants.length > 1"
+                    ng-click="removeVariant($index)">
+                Usuń
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5 col-xs-12">
             <p class="help-block">
                 Symbol to identyfikator danej linii. Jeśli autobusy kursują po kilku wariantach trasy
                 (np. 98, 98A, 98B) użyj przycisku <em>Dodaj kolejny wariant</em>, aby wprowadzić każdy z nich.

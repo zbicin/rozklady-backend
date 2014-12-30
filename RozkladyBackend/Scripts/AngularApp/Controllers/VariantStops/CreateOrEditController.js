@@ -97,12 +97,9 @@ timetableApp.controller('variantStopsCreateOrEditController', ['$scope','$routeP
             $scope.variantStops = variantStops;
         });
         
-        /*Store.variants.getWithDeparturesAndExplanations($routeParams.variantId).then(function (variant) {
+        Store.variants.get($routeParams.variantId).then(function (variant) {
             $scope.variant = variant;
         });
-        Store.explanations.list().then(function (explanations) {
-            $scope.explanations = explanations;
-        });*/
     }
 
 }]);

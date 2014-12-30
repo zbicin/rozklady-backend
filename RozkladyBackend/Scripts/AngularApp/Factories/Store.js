@@ -115,12 +115,7 @@ timetableApp.factory('Store', ['$http', '$q', 'Page', function ($http, $q, Page)
 
     var variants = {
         get: function (variantId) {
-            var request = $http({
-                method: 'get',
-                url: '/Ajax/GetVariant?variantId=' + variantId,
-            });
-
-            return (request.then(handleSuccess, handleError));
+            return basicRequest('get', 'GetVariant?variantId=' + variantId);
         },
         getWithDeparturesAndExplanations: function (variantId) {
             var request = $http({

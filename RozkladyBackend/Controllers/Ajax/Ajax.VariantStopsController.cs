@@ -57,6 +57,13 @@ namespace RozkladyBackend.Controllers
                         }
                     }
                     db.SaveChanges();
+
+                    var orderedVariantStops = db.VariantStops.Where(vs => vs.Variant.Id == variantId).OrderBy(vs => vs.TimeOffset).ToList();
+                    int firstStopId = orderedVariantStops.First().Stop.Id;
+                    int lastStopId = orderedVariantStops.Last().Stop.Id;
+                    variant.FirstLineStop = db.Stops.Single(s => s.Id == firstStopId);
+                    variant.LastLineStop = db.Stops.Single(s => s.Id == lastStopId);
+                    db.SaveChanges();
                 }
             }
         }
