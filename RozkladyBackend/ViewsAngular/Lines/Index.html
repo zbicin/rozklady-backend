@@ -33,11 +33,11 @@
             <td class="text-right">
                 <a ng-href="#departures/createOrEdit/{{ variant.id }}"
                    class="btn btn-sm btn-default">
-                    Godziny odjazdów
+                    Godziny odjazdów ({{ variant.departures.length }})
                 </a>
                 <a ng-href="#variantStops/createOrEdit/{{ variant.id }}"
                    class="btn btn-sm btn-default">
-                    Przystanki na trasie
+                    Przystanki na trasie ({{ variant.variantStops.length }})
                 </a>
                 <a ng-click="removeVariant(line, variant)"
                    class="btn btn-sm btn-default">

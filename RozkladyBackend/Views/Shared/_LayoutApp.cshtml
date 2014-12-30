@@ -5,7 +5,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/angularapp")
 </head>
-<body>
+<body ng-keydown="handleKeyDown($event)">
     @RenderBody()
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -36,6 +36,7 @@ namespace RozkladyBackend.Controllers
                     }
                     else
                     {
+                        singleVariant.Line = db.Lines.Single(l => l.Id == line.Id);
                         db.Entry(singleVariant).State = System.Data.Entity.EntityState.Added;
                     }
                 }
@@ -69,7 +70,7 @@ namespace RozkladyBackend.Controllers
             using (BackendContext db = new BackendContext())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return new JsonCamelCaseResult(db.Lines.Include("Variants").ToList());
+                return new JsonCamelCaseResult(db.Lines.Include("Variants").Include("Variants.Departures").Include("Variants.VariantStops").ToList());
             }
         }
 
