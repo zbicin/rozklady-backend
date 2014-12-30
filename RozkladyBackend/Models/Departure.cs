@@ -19,29 +19,38 @@ namespace RozkladyBackend.Models
         public Boolean IsValidOnFriday { get; set; }
         public Boolean IsValidOnSaturday { get; set; }
         public Boolean IsValidOnSunday { get; set; }
-        public String Symbols
-        {
-            get
-            {
-                if (Explanations != null)
-                {
-                    StringBuilder sb = new StringBuilder();
-                    foreach (var singleExplanation in Explanations)
-                    {
-                        sb.Append(singleExplanation.Abbreviation);
-                    }
-                    return sb.ToString();
-                }
-                else
-                {
-                    return "";
-                }
-            }
-        }
 
         public Departure()
         {
             this.Explanations = new List<Explanation>();
+        }
+
+        public void AddTimeOffset(int delay)
+        {
+            this.Minute += delay;
+            while (Minute > 59)
+            {
+                Minute -= 60;
+                Hour++;
+            }
+
+            while (Hour > 23)
+            {
+                Hour -= 24;
+                this.MoveForwardValidDaysByOne();
+            }
+        }
+
+        private void MoveForwardValidDaysByOne()
+        {
+            bool tempIsValidOnSunday = IsValidOnSunday;
+            this.IsValidOnSunday = this.IsValidOnSaturday;
+            this.IsValidOnSaturday = this.IsValidOnFriday;
+            this.IsValidOnFriday = this.IsValidOnThursday;
+            this.IsValidOnThursday = this.IsValidOnWednesday;
+            this.IsValidOnWednesday = this.IsValidOnTueday;
+            this.IsValidOnTueday = this.IsValidOnMonday;
+            this.IsValidOnMonday = tempIsValidOnSunday;
         }
     }
 }

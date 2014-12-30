@@ -18,7 +18,7 @@ namespace RozkladyBackend.Controllers
         {
             using (BackendContext db = new BackendContext())
             {
-                return new JsonCamelCaseResult(db.Departures.Where(d => d.Variant.Id == variantId).ToList(), JsonRequestBehavior.AllowGet);
+                return new JsonCamelCaseResult(db.Departures.Where(d => d.Variant.Id == variantId).ToList());
             }
         }
 

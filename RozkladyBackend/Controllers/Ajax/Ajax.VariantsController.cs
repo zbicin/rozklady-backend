@@ -18,7 +18,7 @@ namespace RozkladyBackend.Controllers
             using (BackendContext db = new BackendContext())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return new JsonCamelCaseResult(db.Variants.Single(v => v.Id == variantId), JsonRequestBehavior.AllowGet);
+                return new JsonCamelCaseResult(db.Variants.Single(v => v.Id == variantId));
             }
         }
 
@@ -28,7 +28,7 @@ namespace RozkladyBackend.Controllers
             {
                 db.Configuration.LazyLoadingEnabled = false;
                 var result = db.Variants.Include("Departures").Include("Departures.Explanations").Single(v => v.Id == variantId);
-                return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
+                return new JsonCamelCaseResult(result);
             }
         }
 

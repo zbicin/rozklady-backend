@@ -164,12 +164,15 @@
     <Compile Include="Controllers\Ajax\Ajax.VariantsController.cs" />
     <Compile Include="Controllers\Ajax\Ajax.StopsController.cs" />
     <Compile Include="Controllers\Ajax\Ajax.ExplanationsController.cs" />
+    <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Lib\API\APITimetable.cs" />
+    <Compile Include="Lib\API\APITimetableBuilder.cs" />
     <Compile Include="Lib\JsonCamelCaseResult.cs" />
     <Compile Include="Models\Context\BackendContext.cs" />
     <Compile Include="Models\Context\BackendInitializer.cs" />
@@ -290,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\API\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

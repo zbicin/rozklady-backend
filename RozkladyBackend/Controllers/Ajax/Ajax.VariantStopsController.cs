@@ -16,7 +16,7 @@ namespace RozkladyBackend.Controllers
             using (BackendContext db = new BackendContext())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return new JsonCamelCaseResult(db.VariantStops.Include("Stop").Where(vs => vs.Variant.Id == variantId).OrderBy(vs => vs.TimeOffset).ToList(), JsonRequestBehavior.AllowGet);
+                return new JsonCamelCaseResult(db.VariantStops.Include("Stop").Where(vs => vs.Variant.Id == variantId).OrderBy(vs => vs.TimeOffset).ToList());
             }
         }
         public void UpdateVariantStops(int variantId, List<Stop> stops, List<VariantStop> variantStops, List<VariantStop> variantStopsToRemove)

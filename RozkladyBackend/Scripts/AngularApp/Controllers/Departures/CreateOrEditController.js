@@ -86,7 +86,6 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
             isValidOnSaturday: $scope.isValidOnSaturday,
             isValidOnSunday: $scope.isValidOnSunday,
             minute: parseInt(minute, 10),
-            symbols: symbols,
             explanations: []
         };
 
