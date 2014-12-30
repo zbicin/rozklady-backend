@@ -16,6 +16,7 @@ namespace RozkladyBackend.Lib.API
             List<int> variantsIds = variantsPresent.Select(x => x.Id).ToList();
             List<Departure> allDeparturesThroughThatStop = db.Departures.Include("Variant").Include("Explanations").Where(d => variantsIds.Contains(d.Variant.Id)).ToList();
             List<Departure> timeAlteredDepartures = new List<Departure>();
+            List<Explanation> explanations = db.Explanations.ToList();
 
             /* after this double-foreach loop we have all departures with updated minutes and hours */
             foreach (var singleVariant in variantsPresent)
@@ -41,6 +42,7 @@ namespace RozkladyBackend.Lib.API
 
             return new APITimetable()
             {
+                Explanations = explanations,
                 Hours = hours,
                 Stop = stop,
                 Variants = variantsPresent

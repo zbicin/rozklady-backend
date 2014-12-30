@@ -12,5 +12,7 @@ namespace RozkladyBackend.Lib.API
         public List<Variant> Variants { get; set; }
         public Dictionary<int, List<Departure>> Hours { get; set; }
 
+        public List<Explanation> Explanations { get; set; }
+
     }
 }

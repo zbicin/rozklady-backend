@@ -12,7 +12,7 @@ namespace RozkladyBackend.Controllers
 {
     public class APIController : Controller
     {
-        public JsonCamelCaseResult Timetable(int stopId)
+        public JsonCamelCaseResult Timetable(int stopId, Boolean prettyPrint)
         {
             using (BackendContext db = new BackendContext())
             {
@@ -22,7 +22,7 @@ namespace RozkladyBackend.Controllers
                 APITimetable result = APITimetableBuilder.Build(db, stopId);
                 
                 return new JsonCamelCaseResult(result) {
-                    PrettyPrint = true
+                    PrettyPrint = prettyPrint
                 };
             }
         }
