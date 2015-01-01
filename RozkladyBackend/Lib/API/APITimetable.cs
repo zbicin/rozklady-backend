@@ -8,9 +8,9 @@ namespace RozkladyBackend.Lib.API
 {
     public class APITimetable
     {
-        public Stop Stop { get; set; }
-        public List<Variant> Variants { get; set; }
-        public Dictionary<int, List<Departure>> Hours { get; set; }
+        public APIStop Stop { get; set; }
+        public List<APILine> Lines { get; set; }
+        public List<List<APIDeparture>> Hours { get; set; }
 
         public List<Explanation> Explanations { get; set; }
 

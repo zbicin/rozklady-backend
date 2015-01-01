@@ -14,7 +14,7 @@ timetableApp.controller('stopsCreateOrEditController', ['$scope','$routeParams',
 
     // --------------------------------
     function getJsonUrl() {
-        return location.protocol + '//' + location.host + '/API/Timetable?stopId=' + $routeParams.stopId;
+        return location.protocol + '//' + location.host + '/API/Timetable?prettyPrint=false&stopId=' + $routeParams.stopId;
     }
 
     function submitForm() {

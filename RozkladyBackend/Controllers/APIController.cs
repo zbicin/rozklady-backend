@@ -18,7 +18,7 @@ namespace RozkladyBackend.Controllers
             {
                 // TODO: check if necessary
                 db.Configuration.LazyLoadingEnabled = false;
-
+            
                 APITimetable result = APITimetableBuilder.Build(db, stopId);
                 
                 return new JsonCamelCaseResult(result) {

@@ -21,25 +21,25 @@ namespace RozkladyBackend.Controllers
                     // entity exists
                     db.Entry(line).State = System.Data.Entity.EntityState.Modified;
 
+                    foreach (var singleVariant in variants)
+                    {
+                        if (singleVariant.Id > 0)
+                        {
+                            db.Entry(line.Variants.Single(v => v.Id == singleVariant.Id)).State = System.Data.Entity.EntityState.Modified;
+                        }
+                        else
+                        {
+                            singleVariant.Line = db.Lines.Single(l => l.Id == line.Id);
+                            db.Entry(singleVariant).State = System.Data.Entity.EntityState.Added;
+                        }
+                    }
                 }
                 else
                 {
+                    // this creates the Variants as well
                     db.Entry(line).State = System.Data.Entity.EntityState.Added;
-                    db.SaveChanges();
                 }
-
-                foreach (var singleVariant in variants)
-                {
-                    if (singleVariant.Id > 0)
-                    {
-                        db.Entry(line.Variants.Single(v => v.Id == singleVariant.Id)).State = System.Data.Entity.EntityState.Modified;
-                    }
-                    else
-                    {
-                        singleVariant.Line = db.Lines.Single(l => l.Id == line.Id);
-                        db.Entry(singleVariant).State = System.Data.Entity.EntityState.Added;
-                    }
-                }
+                db.SaveChanges();
 
                 if (variantsToRemove != null) { 
                     foreach (var singleVariant in variantsToRemove)
@@ -51,8 +51,8 @@ namespace RozkladyBackend.Controllers
                             db.Variants.Remove(db.Variants.Single(v => v.Id == singleVariant.Id));
                         }
                     }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
             }
         }
 
