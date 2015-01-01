@@ -166,6 +166,7 @@
     <Compile Include="Controllers\Ajax\Ajax.ExplanationsController.cs" />
     <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -297,6 +298,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\API\" />
+    <Folder Include="Views\Export\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
