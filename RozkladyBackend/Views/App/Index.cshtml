@@ -21,6 +21,10 @@
         <i class="glyphicon glyphicon-chevron-left"></i>
         {{ Page.back.title }}
     </a>
+    <a href="@Url.Action("LogOff", "Account")">
+        <i class="glyphicon glyphicon-log-out"></i>
+        Wyloguj się
+    </a>
 </nav>
 <section>
     <div class="content" ng-class="{pending: Page.pendingRequestsCount > 0}">

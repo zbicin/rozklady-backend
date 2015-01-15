@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace RozkladyBackend.Controllers
 {
+    [Authorize]
     public partial class AppController : Controller
     {
         // GET: App
