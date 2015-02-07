@@ -14,7 +14,7 @@ namespace RozkladyBackend
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<BackendContext>(new BackendInitializer());
+            //Database.SetInitializer<BackendContext>(new BackendInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
