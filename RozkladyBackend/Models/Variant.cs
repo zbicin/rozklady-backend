@@ -16,13 +16,13 @@ namespace RozkladyBackend.Models
         public String Description { get; set; }
         public virtual Line Line { get; set; }
         [JsonProperty(PropertyName = "firstLineStop")]
-        public virtual Stop FirstLineStop { get; set; }
+        public Stop FirstLineStop { get; set; }
         [JsonProperty(PropertyName = "lastLineStop")]
-        public virtual Stop LastLineStop { get; set; }
+        public Stop LastLineStop { get; set; }
         [JsonProperty(PropertyName = "variantStops")]
-        public virtual List<VariantStop> VariantStops { get; set; }
+        public List<VariantStop> VariantStops { get; set; }
         [JsonProperty(PropertyName = "departures")]
-        public virtual List<Departure> Departures { get; set; }
+        public List<Departure> Departures { get; set; }
 
         public Variant()
         {

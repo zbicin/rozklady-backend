@@ -26,33 +26,54 @@ namespace RozkladyBackend.Controllers
         {
             using (BackendContext db = new BackendContext())
             {
-                var dbVariant = db.Variants.Single(v => v.Id == variant.Id);
-
-                if (variant.Departures != null)
+                if (departuresToRemove != null)
                 {
-                    dbVariant.Departures.ToList();
-                    dbVariant.Departures.Clear();
-
-                    foreach (var singleDeparture in variant.Departures)
+                    foreach (var singleDeparture in departuresToRemove)
                     {
-                        List<Explanation> explanationsReplacement = new List<Explanation>();
-                        foreach (var singleExplanation in singleDeparture.Explanations)
+                        if (singleDeparture.Id > 0)
                         {
-                            var dbExplanation = db.Explanations.SingleOrDefault(e => e.Abbreviation == singleExplanation.Abbreviation);
-                            if (dbExplanation != null)
-                            {
-                                explanationsReplacement.Add(dbExplanation);
-                            }
-                            else
-                            {
-                                explanationsReplacement.Add(singleExplanation);
-                            }
+                            db.Entry(singleDeparture).State = EntityState.Deleted;
                         }
-
-                        singleDeparture.Explanations = explanationsReplacement;
-                        dbVariant.Departures.Add(singleDeparture);                        
-                        db.SaveChanges();
                     }
+                    db.SaveChanges();
+                }
+
+                var dbVariant = db.Variants.Single(v => v.Id == variant.Id);
+                List<Departure> departures = variant.Departures;
+
+                if (departures != null)
+                {
+                    foreach (var singleDeparture in departures)
+                    {
+                        //dep is new
+                        if (singleDeparture.Id < 1)
+                        {
+                            Explanation explanation;
+                            List<Explanation> singleDepartureExplanationCopy = singleDeparture.Explanations.ToList();
+                            foreach (var singleExplanation in singleDepartureExplanationCopy)
+                            {
+                                //explanation already exists
+                                if (singleExplanation.Id > 0)
+                                {
+                                    explanation = db.Explanations.Single(e => e.Id == singleExplanation.Id);
+                                }
+                                //explanation is new
+                                else
+                                {
+                                    explanation = db.Explanations.Add(singleExplanation);
+                                    db.SaveChanges();
+                                }
+
+                                singleDeparture.Explanations.Remove(singleDeparture.Explanations.Single(e => e.Id == singleExplanation.Id));
+                                singleDeparture.Explanations.Add(explanation);
+                            }
+
+                            singleDeparture.VariantId = dbVariant.Id;
+
+                            db.Entry(singleDeparture).State = EntityState.Added;
+                        }
+                    }
+                    db.SaveChanges();
                 }
 
                 if (explanationsToRemove != null)
@@ -64,18 +85,6 @@ namespace RozkladyBackend.Controllers
                         }
                     }
                 }
-
-                if(departuresToRemove != null) {
-                    foreach (var singleDeparture in departuresToRemove)
-                    {
-                        if (singleDeparture.Id > 0)
-                        {
-                            db.Departures.Remove(db.Departures.Single(d => d.Id == singleDeparture.Id));    
-                        }
-                    }
-                }
-
-                db.SaveChanges();
             }
         }
 

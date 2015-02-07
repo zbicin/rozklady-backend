@@ -10,8 +10,9 @@ namespace RozkladyBackend.Models
         public int Id { get; set; }
         public int Hour { get; set; }
         public int Minute { get; set; }
-        public virtual List<Explanation> Explanations { get; set; }
-        public virtual Variant Variant { get; set; }
+        public List<Explanation> Explanations { get; set; }
+        public Variant Variant { get; set; }
+        public int VariantId { get; set; }
         public Boolean IsValidOnMonday { get; set; }
         public Boolean IsValidOnTueday { get; set; }
         public Boolean IsValidOnWednesday { get; set; }

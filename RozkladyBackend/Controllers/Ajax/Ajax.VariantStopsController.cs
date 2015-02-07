@@ -27,42 +27,56 @@ namespace RozkladyBackend.Controllers
                 {
                     foreach (var singleVariantStop in variantStopsToRemove)
                     {
-                        db.Entry(singleVariantStop).State = System.Data.Entity.EntityState.Deleted;
+                        if (singleVariantStop.Id > 0)
+                        {
+                            db.Entry(singleVariantStop).State = System.Data.Entity.EntityState.Deleted;
+                        }
                     }
                     db.SaveChanges();
                 }
 
-                Variant variant = db.Variants.Single(v => v.Id == variantId);
+                Variant variant = db.Variants.Include("VariantStops").Single(v => v.Id == variantId);
                 if (variantStops != null)
                 {
                     foreach (var singleVariantStop in variantStops)
                     {
+                        // vs is new
                         if (singleVariantStop.Id < 1)
                         {
+                            Stop stop;
+                            // stop already exists
                             if (singleVariantStop.Stop.Id > 0)
                             {
-                                Stop stop = db.Stops.Single(s => s.Id == singleVariantStop.Stop.Id);
-                                singleVariantStop.Stop = stop;
-                                singleVariantStop.Variant = variant;
+                                stop = db.Stops.Single(s => s.Id == singleVariantStop.Stop.Id);
                             }
+                            // stop is new
                             else
                             {
-                                Stop stop = db.Stops.Add(singleVariantStop.Stop);
+                                stop = db.Stops.Add(singleVariantStop.Stop);
                                 db.SaveChanges();
-                                singleVariantStop.Stop = stop;
-                                singleVariantStop.Variant = variant;
                             }
+
+                            singleVariantStop.Stop = stop;
+                            singleVariantStop.Variant = variant;
 
                             db.Entry(singleVariantStop).State = System.Data.Entity.EntityState.Added;
                         }
                     }
                     db.SaveChanges();
 
-                    var orderedVariantStops = db.VariantStops.Where(vs => vs.Variant.Id == variantId).OrderBy(vs => vs.TimeOffset).ToList();
-                    int firstStopId = orderedVariantStops.First().Stop.Id;
-                    int lastStopId = orderedVariantStops.Last().Stop.Id;
-                    variant.FirstLineStop = db.Stops.Single(s => s.Id == firstStopId);
-                    variant.LastLineStop = db.Stops.Single(s => s.Id == lastStopId);
+                    var orderedVariantStops = db.VariantStops.Include("Stop").Where(vs => vs.Variant.Id == variantId).OrderBy(vs => vs.TimeOffset).ToList();
+                    if (orderedVariantStops.Count > 0)
+                    {
+                        int firstStopId = orderedVariantStops.First().Stop.Id;
+                        int lastStopId = orderedVariantStops.Last().Stop.Id;
+                        variant.FirstLineStop = db.Stops.Single(s => s.Id == firstStopId);
+                        variant.LastLineStop = db.Stops.Single(s => s.Id == lastStopId);
+                    }
+                    else
+                    {
+                        variant.FirstLineStop = null;
+                        variant.LastLineStop = null;
+                    }
                     db.SaveChanges();
                 }
             }
