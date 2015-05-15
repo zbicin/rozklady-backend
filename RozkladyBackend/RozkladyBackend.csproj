@@ -248,6 +248,7 @@
     <Content Include="Scripts\Lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\Lib\respond.js" />
     <Content Include="Scripts\Lib\respond.min.js" />
+    <Content Include="Scripts\UI.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="ViewsAngular\Home\Index.html" />
     <Content Include="ViewsAngular\Lines\CreateOrEdit.html" />
