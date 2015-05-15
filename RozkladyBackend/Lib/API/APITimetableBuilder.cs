@@ -12,7 +12,7 @@ namespace RozkladyBackend.Lib.API
         public static APITimetable Build(BackendContext db, int stopId)
         {
             Stop stop = db.Stops.Single(s => s.Id == stopId);
-            List<Line> allLines = db.Lines.ToList();
+            List<Line> allLines = db.Lines.OrderBy(l => l.Name).ToList();
             List<Variant> variantsPresent = db.VariantStops.Include("Variant").Where(vs => vs.Stop.Id == stopId).Select(vs => vs.Variant).ToList();
             List<int> variantsIds = variantsPresent.Select(x => x.Id).ToList();
             List<Departure> allDeparturesThroughThatStop = db.Departures.Include("Variant").Include("Explanations").Where(d => variantsIds.Contains(d.Variant.Id)).ToList();
