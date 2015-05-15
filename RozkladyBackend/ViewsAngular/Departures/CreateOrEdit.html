@@ -74,6 +74,7 @@
                     </tr>
                 </tbody>
             </table>
+            <a href="javascript:;" ng-click="removeAllDepartures()" class="text-danger">Usuń wszystkie odjazdy</a>
         </div>
         <div class="col-xs-12 col-sm-4 col-sm-offset-1">
             <div class="panel panel-success">
@@ -84,19 +85,19 @@
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" ng-model="isValidOnWorkdays" accesskey="1"> Od poniedziałku do piątku
+                                <input type="checkbox" name="validOnDay" ng-model="isValidOnWorkdays" accesskey="1"> Od poniedziałku do piątku
                                 <kbd>Alt+1</kbd>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" ng-model="isValidOnSaturday" accesskey="2"> Soboty
+                                <input type="checkbox" name="validOnDay" ng-model="isValidOnSaturday" accesskey="2"> Soboty
                                 <kbd>Alt+2</kbd>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" ng-model="isValidOnSunday" accesskey="3"> Niedziele
+                                <input type="checkbox" name="validOnDay" ng-model="isValidOnSunday" accesskey="3"> Niedziele
                                 <kbd>Alt+3</kbd>
                             </label>
                         </div>

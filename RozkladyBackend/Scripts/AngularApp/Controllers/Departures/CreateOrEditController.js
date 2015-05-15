@@ -15,6 +15,7 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
     $scope.rawDeparture = '';
 
     $scope.proceed = proceed;
+    $scope.removeAllDepartures = removeAllDepartures;
     $scope.removeDeparture = removeDeparture;
     $scope.removeExplanation = removeExplanation;
     $scope.submitForm = submitForm;
@@ -44,6 +45,13 @@ timetableApp.controller('departuresCreateOrEditController',    ['$scope','$route
                     $scope.errorMessage = errorMessage;
                 }
         );
+    }
+
+    function removeAllDepartures() {
+        var deps = $scope.variant.departures.splice(0, $scope.variant.departures.length);
+        for (var i = 0; i < deps.length; i++) {
+            departuresRemovalQueue.push(deps[i]);
+        }
     }
 
     function removeDeparture(departureToRemove) {
